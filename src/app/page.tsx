@@ -1,100 +1,79 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="grid grid-rows-[20px_1fr_20px] min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <main className="flex flex-col gap-16 row-start-2">
+        <div>
+          <h1 className="text-3xl font-medium">
+            Revasi is a refined reservations management system designed for fine
+            dining restaurants. We collaborate with restaurateurs to streamline
+            operations, enhance guest experiences, and redefine hospitality
+            standards.
+          </h1>
+        </div>
+        <div>
+          <h2 className="font-medium text-lg mb-4">Featured clients</h2>
+          <ol className="list-inside list-decimal text-sm text-center sm:text-left">
+            <ul className="mb-2 text-neutral-600">
+              <Link href="https://locavorenxt.revasi.net/">
+                <Button variant="link" className="px-0 underline">
+                  Locavore NXT
+                </Button>
+              </Link>
+              , Fine dining experience in Bali
+            </ul>
+          </ol>
+        </div>
+        <div>
+          <h2 className="font-medium text-lg mb-4">About Revasi</h2>
+          <div className="flex flex-col gap-4">
+            <p>
+              Revasi is a reservations management system tailored for fine
+              dining restaurants. Founded in 2024, it was originally created to
+              meet the high standards and unique demands of Locavore NXT, a
+              pioneering dining experience in Bali.
+            </p>
+            <p>
+              Developed by a small, dedicated team, Revasi is the result of
+              close collaboration with restaurateurs, ensuring every feature is
+              built to handle the complexities of fine dining operations. Its
+              thoughtful design simplifies reservations while enhancing guest
+              interactions, making it a valuable tool for both restaurants and
+              their patrons.
+            </p>
+            <p>
+              With a focus on reliability and elegance, Revasi is more than a
+              system—it’s a partner in delivering exceptional hospitality and
+              memorable dining experiences.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2 className="font-medium text-lg mb-4">Follow us</h2>
+          <ol className="list-inside list-decimal text-sm text-center sm:text-left">
+            <ul className="mb-2 flex gap-2 items-center">
+              Twitter:
+              <Link href="/hi">
+                <Button variant="link" className="px-0 underline">
+                  Discount drug
+                </Button>
+              </Link>
+            </ul>
+          </ol>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className="row-start-3 flex gap-6 flex-wrap text-xs">
+        <p>
+          Copyright © 2025{" "}
+          <Link href="https://www.digics.net/">
+            <Button variant="link" className="px-0 text-xs">
+              Digics.
+            </Button>
+          </Link>
+          All Rights Reserved. Made with ❤️ in Bali.
+        </p>
       </footer>
     </div>
   );
