@@ -22,7 +22,7 @@ export default function Home() {
                   Locavore NXT
                 </Button>
               </Link>
-              , Fine dining experience in Bali
+              , A hyper local restaurant hub inspired by nature
             </ul>
           </ol>
         </div>
@@ -49,19 +49,6 @@ export default function Home() {
               memorable dining experiences.
             </p>
           </div>
-        </div>
-        <div>
-          <h2 className="font-medium text-lg mb-4">Follow us</h2>
-          <ol className="list-inside list-decimal text-sm text-center sm:text-left">
-            <ul className="mb-2 flex gap-2 items-center">
-              Twitter:
-              <Link href="/hi">
-                <Button variant="link" className="px-0 underline">
-                  Discount drug
-                </Button>
-              </Link>
-            </ul>
-          </ol>
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap text-xs">
