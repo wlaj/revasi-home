@@ -1,6 +1,4 @@
-import FeaturesSection from "@/components/uptime-features";
-import HeroSection from "@/components/hero";
-import ContentSection from "@/components/content";
+import HeroSection from "@/components/hero-section";
 import FeaturesBlocks from "@/components/features-blocks";
 
 export default function Home() {
