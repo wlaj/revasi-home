@@ -48,7 +48,7 @@ export default function HeroSection() {
                 as="h1"
                 className="text-balance text-4xl font-medium sm:text-5xl md:text-6xl"
               >
-                Your gateway to endless entertainment experiences
+                The reservations management system for Indonesia's 🇮🇩 finest
               </TextEffect>
               <TextEffect
                 per="line"
@@ -58,9 +58,10 @@ export default function HeroSection() {
                 as="p"
                 className="mx-auto mt-12 max-w-2xl text-pretty text-lg"
               >
-                Tailwindcss highly customizable components for building modern
-                websites and applications that look and feel the way you mean
-                it.
+                Revasi is a reservations management system tailored for fine dining
+                restaurants. Founded in 2024, it was originally created to meet
+                the high standards and unique demands of Locavore NXT, a
+                pioneering dining experience in Bali.
               </TextEffect>
 
               <AnimatedGroup
