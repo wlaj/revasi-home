@@ -30,8 +30,8 @@ export default function BlocksSection() {
               </CardHeader>
 
               <div className="relative mb-6 border-t border-dashed sm:mb-0">
-                <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_0%,transparent_40%,var(--color-blue-600),var(--color-white)_100%)]"></div>
-                <div className="aspect-76/59 p-1 px-6">
+                <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_0%,transparent_40%,var(--color-primary),var(--color-white)_100%)]"></div>
+                <div className="aspect-[21/9] p-1 px-6">
                   <DualModeImage
                     darkSrc="/details-2.png"
                     lightSrc="/payments-light.png"
@@ -56,11 +56,11 @@ export default function BlocksSection() {
 
               <CardContent>
                 <div className="relative mb-6 sm:mb-0">
-                  <div className="absolute -inset-6 [background:radial-gradient(50%_50%_at_75%_50%,transparent,var(--color-background)_100%)]"></div>
-                  <div className="aspect-76/59 border">
+                  <div className="absolute -inset-6 [background:radial-gradient(75%_75%_at_90%_75%,transparent,var(--color-background)_100%)]"></div>
+                  <div className="aspect-[21/9] border">
                     <DualModeImage
-                      darkSrc="/origin-cal-dark.png"
-                      lightSrc="/origin-cal.png"
+                      darkSrc="/reservations.png"
+                      lightSrc="/reservations.png"
                       alt="calendar illustration"
                       width={1207}
                       height={929}
