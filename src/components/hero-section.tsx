@@ -30,10 +30,24 @@ export default function HeroSection() {
     <>
       <HeroHeader />
 
-      <main className="overflow-hidden bg-background">
+      <main className="overflow-hidden bg-background relative">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-40"
+          >
+            <source src="/video.webm" type="video/webm" />
+          </video>
+          <div className="absolute inset-0 bg-background/70 backdrop-blur-sm"></div>
+        </div>
+
         <div
           aria-hidden
-          className="absolute inset-0 isolate z-10 hidden opacity-65 contain-strict lg:block"
+          className="absolute inset-0 isolate z-10 hidden opacity-45 contain-strict lg:block pointer-events-none"
         >
           <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
           <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
@@ -41,14 +55,14 @@ export default function HeroSection() {
         </div>
         <section>
           <div className="relative mx-auto max-w-6xl px-6 pt-32 lg:pb-16 lg:pt-48">
-            <div className="relative z-10 mx-auto max-w-4xl text-center">
+            <div className="relative z-20 mx-auto max-w-4xl text-center">
               <TextEffect
                 preset="fade-in-blur"
                 speedSegment={0.3}
                 as="h1"
                 className="text-balance text-4xl font-medium sm:text-5xl md:text-6xl"
               >
-                The reservations management system for Indonesia&apos;s 🇮🇩 finest
+                The reservations management system for Indonesia&apos;s finest
               </TextEffect>
               <TextEffect
                 per="line"
@@ -103,7 +117,9 @@ export default function HeroSection() {
             </div>
           </div>
         </section>
-        <LogoCloud />
+        <div className="mt-24">
+          <LogoCloud />
+        </div>
       </main>
     </>
   );

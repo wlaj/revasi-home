@@ -2,6 +2,8 @@
 
 @theme {
   --color-primary: #FF0000;
+  --color-secondary: white;
+  --color-secondary-foreground: black;
   --color-background: black;
   --color-foreground: white;
   --color-muted: #222222;

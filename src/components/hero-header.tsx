@@ -45,6 +45,7 @@ export const HeroHeader = () => {
                 className="flex items-center space-x-2"
               >
                 <FlowerIcon className="size-8" />
+                <h1 className="text-xl font-bold">Revasi</h1>
               </Link>
 
               <button
@@ -91,6 +92,7 @@ export const HeroHeader = () => {
                 <Button
                   asChild
                   size="sm"
+                  variant="secondary"
                   className={cn(isScrolled && "lg:hidden")}
                 >
                   <Link href="#">
