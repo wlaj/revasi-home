@@ -90,7 +90,7 @@ export default function BlocksSection() {
 
                 <CircularUI
                   label="Join"
-                  circles={[{ pattern: "blue" }, { pattern: "none" }]}
+                  circles={[{ pattern: "white" }, { pattern: "none" }]}
                 />
 
                 <CircularUI
@@ -182,7 +182,7 @@ const DualModeImage = ({
 );
 
 interface CircleConfig {
-  pattern: "none" | "border" | "primary" | "blue";
+  pattern: "none" | "border" | "primary" | "white";
 }
 
 interface CircularUIProps {
@@ -204,8 +204,8 @@ const CircularUI = ({ label, circles, className }: CircularUIProps) => (
                 circle.pattern === "border",
               "border-primary bg-background bg-[repeating-linear-gradient(-45deg,var(--color-primary),var(--color-primary)_1px,transparent_1px,transparent_4px)]":
                 circle.pattern === "primary",
-              "bg-background z-1 border-blue-500 bg-[repeating-linear-gradient(-45deg,var(--color-blue-500),var(--color-blue-500)_1px,transparent_1px,transparent_4px)]":
-                circle.pattern === "blue",
+              "bg-background z-1 border-foreground bg-[repeating-linear-gradient(-45deg,var(--color-foreground),var(--color-foreground)_1px,transparent_1px,transparent_4px)]":
+                circle.pattern === "white",
             })}
           ></div>
         ))}

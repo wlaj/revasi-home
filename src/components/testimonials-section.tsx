@@ -7,14 +7,11 @@ export default function TestimonialsSection() {
   return (
     <SectionContainer>
       <div className="space-y-8 md:space-y-16">
-        <AnimatedGroup preset="blur-slide" className="relative z-10 mx-auto max-w-xl space-y-4 md:space-y-6 text-left">
-          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
+        <AnimatedGroup preset="blur-slide" className="relative z-10 mx-auto max-w-6xl space-y-4 md:space-y-6 text-left">
+          <div className="inline-flex items-center text-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
             <span>Client Experiences</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">Built for restaurateurs, loved by fine dining establishments</h2>
-          <p className="text-base md:text-lg">
-            Our close collaboration with fine dining restaurants ensures that Revasi meets the high standards and unique demands of the industry.
-          </p>
         </AnimatedGroup>
 
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-2">

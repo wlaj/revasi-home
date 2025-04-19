@@ -27,9 +27,9 @@ export default function StatsSection() {
             <div className="mb-12 mt-8 md:mt-12 grid grid-cols-2 gap-2 md:mb-0">
               <AnimatedGroup preset="scale" className="space-y-4">
                 <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-4xl md:text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
-                  100%
+                  33%
                 </div>
-                <p>Fine Dining Focus</p>
+                <p>Avg. increase in reservations</p>
               </AnimatedGroup>
               <AnimatedGroup preset="scale" className="space-y-4">
                 <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-4xl md:text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
