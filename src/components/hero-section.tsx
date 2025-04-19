@@ -32,7 +32,7 @@ export default function HeroSection() {
 
       <main className="overflow-hidden bg-background relative">
         {/* Video Background */}
-        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+        {/* <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
           <video
             autoPlay
             loop
@@ -43,7 +43,7 @@ export default function HeroSection() {
             <source src="/video.webm" type="video/webm" />
           </video>
           <div className="absolute inset-0 bg-background/70 backdrop-blur-sm"></div>
-        </div>
+        </div> */}
 
         <div
           aria-hidden

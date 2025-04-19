@@ -1,0 +1,246 @@
+'use client';
+
+import { AnimatedGroup } from './motion/animated-group';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  useCarousel,
+} from './motion/carousel';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Define the data structure for feature items
+type FeatureItem = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
+// Sample feature data - replace with actual feature data
+const features: FeatureItem[] = [
+  {
+    id: 1,
+    title: 'Feature 1',
+    description: 'Description 1',
+    image: '/photo.jpeg',
+  },
+  {
+    id: 2,
+    title: 'Feature 2',
+    description: 'Description 2',
+    image: '/photo.jpeg',
+  },
+  {
+    id: 3,
+    title: 'Feature 3',
+    description: 'Description 3',
+    image: '/photo.jpeg',
+  },
+  {
+    id: 4,
+    title: 'Feature 4',
+    description: 'Description 4',
+    image: '/photo.jpeg',
+  },
+];
+
+function CarouselControls() {
+  const { index, setIndex, itemsCount } = useCarousel();
+
+  return (
+    <div className="mt-12 space-y-8">
+      <div className="flex justify-end pr-3 space-x-6">
+        <button
+          onClick={() => setIndex(Math.max(0, index - 1))}
+          disabled={index === 0}
+          className={cn(
+            "flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-sm transition-all duration-300",
+            "hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed",
+            "focus:outline-none focus:ring-2 focus:ring-white/30",
+            "shadow-lg"
+          )}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        <button
+          onClick={() => setIndex(Math.min(itemsCount - 1, index + 1))}
+          disabled={index === itemsCount - 1}
+          className={cn(
+            "flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-sm transition-all duration-300",
+            "hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed",
+            "focus:outline-none focus:ring-2 focus:ring-white/30",
+            "shadow-lg"
+          )}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
+      </div>
+      
+      {/* Position indicators */}
+      <div className="flex justify-end pr-3 space-x-3">
+        {Array.from({ length: itemsCount }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={cn(
+              "w-10 h-1.5 rounded-full transition-all duration-500",
+              index === i 
+                ? "bg-white w-16" 
+                : "bg-white/30 hover:bg-white/50"
+            )}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Helper function to get style properties based on distance from current index
+function getItemStyles(currentIndex: number, itemIndex: number, totalItems: number) {
+  // Calculate the distance differently to ensure we always fill the right side
+  // When at the boundaries, we want to adjust the calculation to prevent empty spaces
+  let distance;
+  
+  // Special case for the last item - show first items on the right instead of empty space
+  if (currentIndex >= totalItems - 2 && itemIndex < 2) {
+    // For the first couple items when we're at the end, show them as if they're right after the visible items
+    distance = totalItems - currentIndex + itemIndex;
+  } else {
+    distance = Math.abs(currentIndex - itemIndex);
+  }
+  
+  // Progressive opacity, scale, and blur based on distance
+  const opacity = distance === 0 ? 100 : 
+                 distance === 1 ? 80 : 
+                 distance === 2 ? 40 : 10;
+  
+  const scale = distance === 0 ? 100 : 
+               distance === 1 ? 95 : 
+               distance === 2 ? 90 : 85;
+  
+  // No blur for current item, very slight for adjacent, more for others
+  const blur = distance === 0 ? 0 : 
+              distance === 1 ? 1 : 
+              distance === 2 ? 2 : 3;
+  
+  return {
+    opacity: `${opacity}%`,
+    transform: `scale(${scale / 100}) translateY(${distance === 0 ? 0 : 4}px)`,
+    filter: `blur(${blur}px)`,
+    transitionDelay: `${distance * 50}ms`,
+    zIndex: 10 - distance
+  };
+}
+
+export default function CarouselSection() {
+  const [currentIndex, setCurrentIndex] = useState(1); // Start at the middle (Feature 2)
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Ensure features are always displayed, even at boundaries
+  const renderFeatures = () => {
+    // Create a continuous display of features for visual continuity
+    return features.map((feature, i) => (
+      <CarouselItem 
+        key={feature.id}
+        className="pl-6 md:pl-8 lg:pl-10 md:basis-1/2 lg:basis-1/3"
+      >
+        <div 
+          className="relative aspect-[4/5] transition-all duration-700"
+          style={getItemStyles(currentIndex, i, features.length)}
+        >
+          <div className="rounded-xl overflow-hidden h-full shadow-2xl">
+            {/* Background image */}
+            <Image 
+              src={feature.image}
+              alt={feature.title}
+              fill
+              priority={currentIndex === i}
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+            
+            {/* Subtle gradient for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            
+            {/* Content */}
+            <div className={cn(
+              "absolute bottom-0 left-0 right-0 p-8 z-20",
+              "transform transition-all duration-700",
+              currentIndex === i 
+                ? "translate-y-0 opacity-100" 
+                : "translate-y-8 opacity-0"
+            )}
+            style={{
+              transitionDelay: currentIndex === i ? "200ms" : "0ms"
+            }}
+            >
+              <span className="text-sm font-medium text-gray-300 block mb-2">
+                {feature.description}
+              </span>
+              <h3 className="text-2xl font-bold">
+                {feature.title}
+              </h3>
+              
+              {/* Decorative line that animates when active */}
+              <div 
+                className={cn(
+                  "h-0.5 bg-white/30 mt-4 transition-all duration-1000",
+                  currentIndex === i ? "w-full bg-white/70" : "w-10"
+                )}
+              />
+            </div>
+          </div>
+        </div>
+      </CarouselItem>
+    ));
+  };
+
+  return (
+    <section className="w-full bg-black text-white py-32 px-4 md:px-8 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        <AnimatedGroup preset="fade" className="space-y-10">
+          <div className="text-left">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              Visualize your ideas instantly
+            </h2>
+            <p className="text-lg text-gray-400 mt-4 max-w-2xl">
+              Transform concepts into reality with our powerful visualization tools
+            </p>
+          </div>
+          
+          {mounted && (
+            <div className="relative py-12">
+              {/* Decorative elements */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -z-10" />
+              <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[80px] -z-10" />
+              
+              <Carousel 
+                className="w-full"
+                index={currentIndex}
+                onIndexChange={setCurrentIndex}
+                disableDrag={true} // Disable drag to only use buttons for navigation
+              >
+                <CarouselContent className="-ml-6 md:-ml-8">
+                  {renderFeatures()}
+                </CarouselContent>
+                
+                <CarouselControls />
+              </Carousel>
+            </div>
+          )}
+        </AnimatedGroup>
+      </div>
+    </section>
+  );
+} 
