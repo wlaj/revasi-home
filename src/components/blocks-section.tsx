@@ -3,91 +3,107 @@ import { cn } from "@/lib/utils";
 import { Calendar, type LucideIcon, MapIcon } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { SectionContainer } from "./section-container";
+import { AnimatedGroup } from "./motion/animated-group";
 
-export default function Features() {
+export default function BlocksSection() {
   return (
-    <section className="py-16 md:py-32 bg-background">
-      <div className="mx-auto max-w-2xl px-6 lg:max-w-5xl">
-        <div className="mx-auto grid gap-4 lg:grid-cols-2">
-          <FeatureCard>
-            <CardHeader className="pb-3">
-              <CardHeading
-                icon={MapIcon}
-                title="Real time location tracking"
-                description="Advanced tracking system, Instantly locate all your assets."
-              />
-            </CardHeader>
-
-            <div className="relative mb-6 border-t border-dashed sm:mb-0">
-              <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_0%,transparent_40%,var(--color-blue-600),var(--color-white)_100%)]"></div>
-              <div className="aspect-76/59 p-1 px-6">
-                <DualModeImage
-                  darkSrc="/details-2.png"
-                  lightSrc="/payments-light.png"
-                  alt="payments illustration"
-                  width={1207}
-                  height={929}
+    <SectionContainer>
+      <div className="space-y-8 md:space-y-16">
+        <AnimatedGroup preset="fade" className="text-left mb-10">
+          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
+            <span>Smart Solutions</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">
+            Advanced tools for optimal performance
+          </h2>
+        </AnimatedGroup>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <AnimatedGroup preset="slide" className="group">
+            <FeatureCard>
+              <CardHeader className="pb-3">
+                <CardHeading
+                  icon={MapIcon}
+                  title="Real time location tracking"
+                  description="Advanced tracking system, Instantly locate all your assets."
                 />
-              </div>
-            </div>
-          </FeatureCard>
+              </CardHeader>
 
-          <FeatureCard>
-            <CardHeader className="pb-3">
-              <CardHeading
-                icon={Calendar}
-                title="Advanced Scheduling"
-                description="Scheduling system, Instantly locate all your assets."
-              />
-            </CardHeader>
-
-            <CardContent>
-              <div className="relative mb-6 sm:mb-0">
-                <div className="absolute -inset-6 [background:radial-gradient(50%_50%_at_75%_50%,transparent,var(--color-background)_100%)]"></div>
-                <div className="aspect-76/59 border">
+              <div className="relative mb-6 border-t border-dashed sm:mb-0">
+                <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_0%,transparent_40%,var(--color-blue-600),var(--color-white)_100%)]"></div>
+                <div className="aspect-76/59 p-1 px-6">
                   <DualModeImage
-                    darkSrc="/origin-cal-dark.png"
-                    lightSrc="/origin-cal.png"
-                    alt="calendar illustration"
+                    darkSrc="/details-2.png"
+                    lightSrc="/payments-light.png"
+                    alt="payments illustration"
                     width={1207}
                     height={929}
                   />
                 </div>
               </div>
-            </CardContent>
-          </FeatureCard>
+            </FeatureCard>
+          </AnimatedGroup>
 
-          <FeatureCard className="p-6 lg:col-span-2">
-            <p className="mx-auto my-6 max-w-md text-balance text-center text-2xl font-semibold">
-              Smart scheduling with automated reminders for maintenance.
-            </p>
+          <AnimatedGroup preset="slide" className="group">
+            <FeatureCard>
+              <CardHeader className="pb-3">
+                <CardHeading
+                  icon={Calendar}
+                  title="Advanced Scheduling"
+                  description="Scheduling system, Instantly locate all your assets."
+                />
+              </CardHeader>
 
-            <div className="flex justify-center gap-6 overflow-hidden">
-              <CircularUI
-                label="Inclusion"
-                circles={[{ pattern: "border" }, { pattern: "border" }]}
-              />
+              <CardContent>
+                <div className="relative mb-6 sm:mb-0">
+                  <div className="absolute -inset-6 [background:radial-gradient(50%_50%_at_75%_50%,transparent,var(--color-background)_100%)]"></div>
+                  <div className="aspect-76/59 border">
+                    <DualModeImage
+                      darkSrc="/origin-cal-dark.png"
+                      lightSrc="/origin-cal.png"
+                      alt="calendar illustration"
+                      width={1207}
+                      height={929}
+                    />
+                  </div>
+                </div>
+              </CardContent>
+            </FeatureCard>
+          </AnimatedGroup>
 
-              <CircularUI
-                label="Inclusion"
-                circles={[{ pattern: "none" }, { pattern: "primary" }]}
-              />
+          <AnimatedGroup preset="blur-slide" className="group lg:col-span-2">
+            <FeatureCard className="p-6">
+              <p className="mx-auto my-6 max-w-md text-balance text-center text-xl md:text-2xl font-semibold">
+                Smart scheduling with automated reminders for maintenance.
+              </p>
 
-              <CircularUI
-                label="Join"
-                circles={[{ pattern: "blue" }, { pattern: "none" }]}
-              />
+              <div className="flex justify-center gap-6 overflow-hidden">
+                <CircularUI
+                  label="Inclusion"
+                  circles={[{ pattern: "border" }, { pattern: "border" }]}
+                />
 
-              <CircularUI
-                label="Exclusion"
-                circles={[{ pattern: "primary" }, { pattern: "none" }]}
-                className="hidden sm:block"
-              />
-            </div>
-          </FeatureCard>
+                <CircularUI
+                  label="Inclusion"
+                  circles={[{ pattern: "none" }, { pattern: "primary" }]}
+                />
+
+                <CircularUI
+                  label="Join"
+                  circles={[{ pattern: "blue" }, { pattern: "none" }]}
+                />
+
+                <CircularUI
+                  label="Exclusion"
+                  circles={[{ pattern: "primary" }, { pattern: "none" }]}
+                  className="hidden sm:block"
+                />
+              </div>
+            </FeatureCard>
+          </AnimatedGroup>
         </div>
       </div>
-    </section>
+    </SectionContainer>
   );
 }
 

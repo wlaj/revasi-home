@@ -11,8 +11,9 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       <StatsSection />
+      {/* <IntegrationsSection /> */}
       <CarouselSection />
       <BlocksSection />
       <TestimonialsSection />

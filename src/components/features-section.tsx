@@ -1,20 +1,23 @@
 import { Cpu, Lock, Sparkles, Zap } from "lucide-react";
 import Image from "next/image";
+import { SectionContainer } from "./section-container";
+import { AnimatedGroup } from "./motion/animated-group";
 
 export default function FeaturesSection() {
   return (
-    <section className="overflow-hidden bg-background py-16 md:py-32">
-      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
-        <div className="relative z-10 max-w-2xl">
-          <h2 className="text-4xl font-semibold lg:text-5xl">
+    <SectionContainer>
+      <div className="space-y-8 md:space-y-12">
+        <AnimatedGroup preset="blur-slide" className="relative z-10 max-w-2xl">
+          <h2 className="text-3xl md:text-4xl font-semibold lg:text-5xl">
             Built for Scaling teams
           </h2>
-          <p className="mt-6 text-lg">
+          <p className="mt-4 md:mt-6 text-base md:text-lg">
             Empower your team with workflows that adapt to your needs, whether
             you prefer git synchronization or a AI Agents interface.
           </p>
-        </div>
-        <div className="relative -mt-16 -mx-4 rounded-3xl p-3 md:-mx-12 lg:col-span-3">
+        </AnimatedGroup>
+        
+        <AnimatedGroup preset="fade" className="relative -mt-16 -mx-4 rounded-3xl p-3 md:-mx-12 lg:col-span-3">
           <div className="perspective-midrange">
             <div>
               <div className="aspect-[21/9] relative">
@@ -30,8 +33,9 @@ export default function FeaturesSection() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="relative z-30 mx-auto mt-24 grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-8 lg:grid-cols-4">
+        </AnimatedGroup>
+        
+        <AnimatedGroup preset="slide" className="relative z-30 mx-auto mt-16 md:mt-24 grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-8 lg:grid-cols-4">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Zap className="size-4" />
@@ -69,8 +73,8 @@ export default function FeaturesSection() {
               It supports an helping developers businesses innovate.
             </p>
           </div>
-        </div>
+        </AnimatedGroup>
       </div>
-    </section>
+    </SectionContainer>
   );
 }

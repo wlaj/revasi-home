@@ -1,41 +1,49 @@
+import { SectionContainer } from "./section-container";
+import { AnimatedGroup } from "./motion/animated-group";
+
 export default function StatsSection() {
   return (
-    <section className="py-16 bg-background md:py-32">
-      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
-        <div className="relative z-10 max-w-xl space-y-6">
-          <h2 className="text-4xl font-medium lg:text-5xl">
+    <SectionContainer>
+      <div className="space-y-8 md:space-y-12">
+        <AnimatedGroup preset="blur-slide" className="relative z-10 max-w-xl space-y-4 md:space-y-6 text-left">
+          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
+            <span>Impressive Numbers</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">
             The Gemini ecosystem brings together our models.
           </h2>
-          <p>
+          <p className="text-base md:text-lg">
             Gemini is evolving to be more than just the models.{" "}
             <span className="font-medium">It supports an entire ecosystem</span>{" "}
             — from products innovate.
           </p>
-        </div>
+        </AnimatedGroup>
+        
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
-          <div>
-            <p>
+          <AnimatedGroup preset="slide" className="space-y-8">
+            <p className="text-base md:text-lg">
               It supports an entire ecosystem — from products to the APIs and
               platforms helping developers and businesses innovate
             </p>
-            <div className="mb-12 mt-12 grid grid-cols-2 gap-2 md:mb-0">
-              <div className="space-y-4">
-                <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
+            <div className="mb-12 mt-8 md:mt-12 grid grid-cols-2 gap-2 md:mb-0">
+              <AnimatedGroup preset="scale" className="space-y-4">
+                <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-4xl md:text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
                   +1200
                 </div>
                 <p>Stars on GitHub</p>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
+              </AnimatedGroup>
+              <AnimatedGroup preset="scale" className="space-y-4">
+                <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-4xl md:text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
                   +500
                 </div>
                 <p>Powered Apps</p>
-              </div>
+              </AnimatedGroup>
             </div>
-          </div>
-          <div className="relative">
+          </AnimatedGroup>
+          
+          <AnimatedGroup preset="fade" className="relative">
             <blockquote className="border-l-4 pl-4">
-              <p>
+              <p className="text-base md:text-lg">
                 Using TailsUI has been like unlocking a secret design
                 superpower. It&apos;s the perfect fusion of simplicity and
                 versatility, enabling us to create UIs that are as stunning as
@@ -53,9 +61,9 @@ export default function StatsSection() {
                 />
               </div>
             </blockquote>
-          </div>
+          </AnimatedGroup>
         </div>
       </div>
-    </section>
+    </SectionContainer>
   );
 }

@@ -4,6 +4,7 @@ import { TextEffect } from "./motion/text-effect";
 import { AnimatedGroup } from "./motion/animated-group";
 import { HeroHeader } from "./hero-header";
 import { LogoCloud } from "./logo-cloud";
+import { SectionContainer } from "./section-container";
 
 const transitionVariants = {
   item: {
@@ -30,21 +31,8 @@ export default function HeroSection() {
     <>
       <HeroHeader />
 
-      <main className="overflow-hidden bg-background relative">
-        {/* Video Background */}
-        {/* <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-40"
-          >
-            <source src="/video.webm" type="video/webm" />
-          </video>
-          <div className="absolute inset-0 bg-background/70 backdrop-blur-sm"></div>
-        </div> */}
-
+      <SectionContainer className="relative overflow-hidden" noPadding>
+        {/* Background gradients */}
         <div
           aria-hidden
           className="absolute inset-0 isolate z-10 hidden opacity-45 contain-strict lg:block pointer-events-none"
@@ -53,74 +41,77 @@ export default function HeroSection() {
           <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
           <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
         </div>
-        <section>
-          <div className="relative mx-auto max-w-6xl px-6 pt-32 lg:pb-16 lg:pt-48">
-            <div className="relative z-20 mx-auto max-w-4xl text-center">
-              <TextEffect
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                as="h1"
-                className="text-balance text-4xl font-medium sm:text-5xl md:text-6xl"
-              >
-                The reservations management system for Indonesia&apos;s finest
-              </TextEffect>
-              <TextEffect
-                per="line"
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                delay={0.5}
-                as="p"
-                className="mx-auto mt-12 max-w-2xl text-pretty text-lg"
-              >
-                Revasi is a reservations management system tailored for fine
-                dining restaurants. Founded in 2024, it was originally created
-                to meet the high standards and unique demands of Locavore NXT, a
-                pioneering dining experience in Bali.
-              </TextEffect>
+        
+        <AnimatedGroup preset="blur-slide" className="relative z-20 mx-auto px-6 pt-32 lg:pb-16 lg:pt-48">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
+              <span>Revolutionary Platform</span>
+            </div>
+            <TextEffect
+              preset="fade-in-blur"
+              speedSegment={0.3}
+              as="h1"
+              className="text-balance text-4xl font-medium sm:text-5xl md:text-6xl"
+            >
+              The reservations management system for Indonesia&apos;s finest
+            </TextEffect>
+            <TextEffect
+              per="line"
+              preset="fade-in-blur"
+              speedSegment={0.3}
+              delay={0.5}
+              as="p"
+              className="mx-auto mt-8 md:mt-12 max-w-2xl text-pretty text-base md:text-lg"
+            >
+              Revasi is a reservations management system tailored for fine
+              dining restaurants. Founded in 2024, it was originally created
+              to meet the high standards and unique demands of Locavore NXT, a
+              pioneering dining experience in Bali.
+            </TextEffect>
 
-              <AnimatedGroup
-                variants={{
-                  container: {
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 0.75,
-                      },
+            <AnimatedGroup
+              variants={{
+                container: {
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.05,
+                      delayChildren: 0.75,
                     },
                   },
-                  ...transitionVariants,
-                }}
-                className="mt-12"
-              >
-                <form action="" className="mx-auto max-w-sm">
-                  <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border border-muted pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
-                    <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
+                },
+                ...transitionVariants,
+              }}
+              className="mt-8 md:mt-12"
+            >
+              <form action="" className="mx-auto max-w-sm">
+                <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border border-muted pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
+                  <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
 
-                    <input
-                      placeholder="Your mail address"
-                      className="h-12 w-full bg-transparent pl-12 focus:outline-none"
-                      type="email"
-                    />
+                  <input
+                    placeholder="Your mail address"
+                    className="h-12 w-full bg-transparent pl-12 focus:outline-none"
+                    type="email"
+                  />
 
-                    <div className="md:pr-1.5 lg:pr-0">
-                      <Button aria-label="submit" size="sm" variant="ghost">
-                        <span className="hidden md:block">Get Started</span>
-                        <SendHorizonal
-                          className="relative mx-auto size-5 md:hidden"
-                          strokeWidth={2}
-                        />
-                      </Button>
-                    </div>
+                  <div className="md:pr-1.5 lg:pr-0">
+                    <Button aria-label="submit" size="sm" variant="ghost">
+                      <span className="hidden md:block">Get Started</span>
+                      <SendHorizonal
+                        className="relative mx-auto size-5 md:hidden"
+                        strokeWidth={2}
+                      />
+                    </Button>
                   </div>
-                </form>
-              </AnimatedGroup>
-            </div>
+                </div>
+              </form>
+            </AnimatedGroup>
           </div>
-        </section>
-        <div className="mt-24">
+        </AnimatedGroup>
+
+        <AnimatedGroup preset="fade" className="mt-16 md:mt-24">
           <LogoCloud />
-        </div>
-      </main>
+        </AnimatedGroup>
+      </SectionContainer>
     </>
   );
 }

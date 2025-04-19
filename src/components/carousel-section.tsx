@@ -9,8 +9,10 @@ import {
 } from './motion/carousel';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SectionContainer } from './section-container';
+import { Button } from './ui/button';
 
 // Define the data structure for feature items
 type FeatureItem = {
@@ -18,33 +20,38 @@ type FeatureItem = {
   title: string;
   description: string;
   image: string;
+  link?: string;
 };
 
-// Sample feature data - replace with actual feature data
+// Better feature data with meaningful content
 const features: FeatureItem[] = [
   {
     id: 1,
-    title: 'Feature 1',
-    description: 'Description 1',
+    title: 'Intuitive Dashboard',
+    description: 'Real-time restaurant analytics',
     image: '/photo.jpeg',
+    link: '#dashboard',
   },
   {
     id: 2,
-    title: 'Feature 2',
-    description: 'Description 2',
+    title: 'Seamless Bookings',
+    description: 'Effortless reservation management',
     image: '/photo.jpeg',
+    link: '#bookings',
   },
   {
     id: 3,
-    title: 'Feature 3',
-    description: 'Description 3',
+    title: 'Guest Profiles',
+    description: 'Personalized dining experiences',
     image: '/photo.jpeg',
+    link: '#profiles',
   },
   {
     id: 4,
-    title: 'Feature 4',
-    description: 'Description 4',
+    title: 'Table Management',
+    description: 'Optimize your restaurant layout',
     image: '/photo.jpeg',
+    link: '#tables',
   },
 ];
 
@@ -53,46 +60,46 @@ function CarouselControls() {
 
   return (
     <div className="mt-12 space-y-8">
-      <div className="flex justify-end pr-3 space-x-6">
+      <div className="flex justify-center md:justify-end md:pr-3 space-x-4">
         <button
           onClick={() => setIndex(Math.max(0, index - 1))}
           disabled={index === 0}
           className={cn(
-            "flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-sm transition-all duration-300",
-            "hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed",
-            "focus:outline-none focus:ring-2 focus:ring-white/30",
+            "flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full border-2 border-primary/20 bg-background/80 backdrop-blur-sm transition-all duration-300",
+            "hover:bg-primary/10 hover:border-primary/30 disabled:opacity-30 disabled:cursor-not-allowed",
+            "focus:outline-none focus:ring-2 focus:ring-primary/30",
             "shadow-lg"
           )}
           aria-label="Previous slide"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-primary" />
         </button>
         <button
           onClick={() => setIndex(Math.min(itemsCount - 1, index + 1))}
           disabled={index === itemsCount - 1}
           className={cn(
-            "flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 backdrop-blur-sm transition-all duration-300",
-            "hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed",
-            "focus:outline-none focus:ring-2 focus:ring-white/30",
+            "flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full border-2 border-primary/20 bg-background/80 backdrop-blur-sm transition-all duration-300",
+            "hover:bg-primary/10 hover:border-primary/30 disabled:opacity-30 disabled:cursor-not-allowed",
+            "focus:outline-none focus:ring-2 focus:ring-primary/30",
             "shadow-lg"
           )}
           aria-label="Next slide"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-primary" />
         </button>
       </div>
       
       {/* Position indicators */}
-      <div className="flex justify-end pr-3 space-x-3">
+      <div className="flex justify-center md:justify-end md:pr-3 space-x-2">
         {Array.from({ length: itemsCount }).map((_, i) => (
           <button
             key={i}
             onClick={() => setIndex(i)}
             className={cn(
-              "w-10 h-1.5 rounded-full transition-all duration-500",
+              "h-1.5 rounded-full transition-all duration-500",
               index === i 
                 ? "bg-white w-16" 
-                : "bg-white/30 hover:bg-white/50"
+                : "bg-white/20 w-8 hover:bg-white/40"
             )}
             aria-label={`Go to slide ${i + 1}`}
           />
@@ -159,7 +166,7 @@ export default function CarouselSection() {
           className="relative aspect-[4/5] transition-all duration-700"
           style={getItemStyles(currentIndex, i, features.length)}
         >
-          <div className="rounded-xl overflow-hidden h-full shadow-2xl">
+          <div className="rounded-2xl overflow-hidden h-full shadow-2xl border border-primary/10">
             {/* Background image */}
             <Image 
               src={feature.image}
@@ -170,12 +177,13 @@ export default function CarouselSection() {
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
             
-            {/* Subtle gradient for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+            {/* Gradient overlay with primary color */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent mix-blend-overlay z-10"></div>
             
             {/* Content */}
             <div className={cn(
-              "absolute bottom-0 left-0 right-0 p-8 z-20",
+              "absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20",
               "transform transition-all duration-700",
               currentIndex === i 
                 ? "translate-y-0 opacity-100" 
@@ -185,18 +193,29 @@ export default function CarouselSection() {
               transitionDelay: currentIndex === i ? "200ms" : "0ms"
             }}
             >
-              <span className="text-sm font-medium text-gray-300 block mb-2">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-foreground/80 bg-primary/80 px-3 py-1 rounded-full mb-3">
                 {feature.description}
               </span>
-              <h3 className="text-2xl font-bold">
+              <h3 className="text-xl md:text-2xl font-bold">
                 {feature.title}
               </h3>
+              
+              {/* Action link for each feature */}
+              {feature.link && currentIndex === i && (
+                <a 
+                  href={feature.link} 
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary-foreground/90 hover:text-primary-foreground group transition-colors"
+                >
+                  <span>Learn more</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
+              )}
               
               {/* Decorative line that animates when active */}
               <div 
                 className={cn(
-                  "h-0.5 bg-white/30 mt-4 transition-all duration-1000",
-                  currentIndex === i ? "w-full bg-white/70" : "w-10"
+                  "h-0.5 bg-primary/30 mt-4 transition-all duration-1000",
+                  currentIndex === i ? "w-full bg-primary/70" : "w-10"
                 )}
               />
             </div>
@@ -207,40 +226,51 @@ export default function CarouselSection() {
   };
 
   return (
-    <section className="w-full bg-black text-white py-32 px-4 md:px-8 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
-        <AnimatedGroup preset="fade" className="space-y-10">
-          <div className="text-left">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Visualize your ideas instantly
-            </h2>
-            <p className="text-lg text-gray-400 mt-4 max-w-2xl">
-              Transform concepts into reality with our powerful visualization tools
-            </p>
+    <SectionContainer className="bg-gradient-to-b from-background to-background/90 text-foreground overflow-hidden" noPadding>
+      <div className="py-16 md:py-24 lg:py-32 space-y-8 md:space-y-12">
+        <AnimatedGroup preset="fade" className="relative z-10 max-w-xl space-y-4 md:space-y-6 text-left">
+          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
+            <span>Powerful Features</span>
           </div>
-          
-          {mounted && (
-            <div className="relative py-12">
-              {/* Decorative elements */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -z-10" />
-              <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[80px] -z-10" />
-              
-              <Carousel 
-                className="w-full"
-                index={currentIndex}
-                onIndexChange={setCurrentIndex}
-                disableDrag={true} // Disable drag to only use buttons for navigation
-              >
-                <CarouselContent className="-ml-6 md:-ml-8">
-                  {renderFeatures()}
-                </CarouselContent>
-                
-                <CarouselControls />
-              </Carousel>
-            </div>
-          )}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+            Visualize your restaurant&apos;s potential
+          </h2>
+          <p className="text-base md:text-lg text-muted-foreground mt-4">
+            Transform your dining experience with our powerful management tools designed specifically for Indonesia&apos;s finest restaurants
+          </p>
+            
+          <div className="mt-4 flex flex-wrap items-center gap-4">
+            <Button className="rounded-full">
+              Get Started
+            </Button>
+            <Button variant="outline" className="rounded-full">
+              <span>View Demo</span>
+              <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+            </Button>
+          </div>
         </AnimatedGroup>
+        
+        {mounted && (
+          <div className="relative py-12">
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -z-10" />
+            <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] -z-10" />
+            
+            <Carousel 
+              className="w-full"
+              index={currentIndex}
+              onIndexChange={setCurrentIndex}
+              disableDrag={true} // Disable drag to only use buttons for navigation
+            >
+              <CarouselContent className="-ml-6 md:-ml-8">
+                {renderFeatures()}
+              </CarouselContent>
+              
+              <CarouselControls />
+            </Carousel>
+          </div>
+        )}
       </div>
-    </section>
+    </SectionContainer>
   );
 } 
