@@ -30,7 +30,7 @@ export default function HeroSection() {
     <>
       <HeroHeader />
 
-      <main className="overflow-hidden">
+      <main className="overflow-hidden bg-background">
         <div
           aria-hidden
           className="absolute inset-0 isolate z-10 hidden opacity-65 contain-strict lg:block"
@@ -48,7 +48,7 @@ export default function HeroSection() {
                 as="h1"
                 className="text-balance text-4xl font-medium sm:text-5xl md:text-6xl"
               >
-                The reservations management system for Indonesia's 🇮🇩 finest
+                The reservations management system for Indonesia&apos;s 🇮🇩 finest
               </TextEffect>
               <TextEffect
                 per="line"
@@ -58,9 +58,9 @@ export default function HeroSection() {
                 as="p"
                 className="mx-auto mt-12 max-w-2xl text-pretty text-lg"
               >
-                Revasi is a reservations management system tailored for fine dining
-                restaurants. Founded in 2024, it was originally created to meet
-                the high standards and unique demands of Locavore NXT, a
+                Revasi is a reservations management system tailored for fine
+                dining restaurants. Founded in 2024, it was originally created
+                to meet the high standards and unique demands of Locavore NXT, a
                 pioneering dining experience in Bali.
               </TextEffect>
 
@@ -79,7 +79,7 @@ export default function HeroSection() {
                 className="mt-12"
               >
                 <form action="" className="mx-auto max-w-sm">
-                  <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
+                  <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border border-muted pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
                     <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
 
                     <input
@@ -89,11 +89,7 @@ export default function HeroSection() {
                     />
 
                     <div className="md:pr-1.5 lg:pr-0">
-                      <Button
-                        aria-label="submit"
-                        size="sm"
-                        className="rounded-(--radius)"
-                      >
+                      <Button aria-label="submit" size="sm" variant="ghost">
                         <span className="hidden md:block">Get Started</span>
                         <SendHorizonal
                           className="relative mx-auto size-5 md:hidden"
@@ -103,26 +99,6 @@ export default function HeroSection() {
                     </div>
                   </div>
                 </form>
-              </AnimatedGroup>
-            </div>
-            <div className="mx-auto md:mt-20 lg:mt-40">
-              <AnimatedGroup
-                variants={{
-                  container: {
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 0.75,
-                      },
-                    },
-                  },
-                  ...transitionVariants,
-                }}
-              >
-                <div className="-rotate-30 aspect-3/2 relative mx-auto lg:w-2/3">
-                  <div className="bg-linear-to-b to-background from-background absolute inset-0 via-transparent"></div>
-                  <div className="bg-linear-to-l to-background from-background absolute inset-0 via-transparent"></div>
-                </div>
               </AnimatedGroup>
             </div>
           </div>
