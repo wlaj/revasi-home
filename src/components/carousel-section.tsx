@@ -23,35 +23,35 @@ type FeatureItem = {
   link?: string;
 };
 
-// Better feature data with meaningful content
+// Better feature data with meaningful content for Revasi
 const features: FeatureItem[] = [
   {
     id: 1,
-    title: 'Intuitive Dashboard',
-    description: 'Real-time restaurant analytics',
+    title: 'Reservations Dashboard',
+    description: 'Streamlined booking management',
     image: '/photo.jpeg',
     link: '#dashboard',
   },
   {
     id: 2,
-    title: 'Seamless Bookings',
-    description: 'Effortless reservation management',
-    image: '/photo.jpeg',
-    link: '#bookings',
-  },
-  {
-    id: 3,
     title: 'Guest Profiles',
     description: 'Personalized dining experiences',
     image: '/photo.jpeg',
     link: '#profiles',
   },
   {
-    id: 4,
+    id: 3,
     title: 'Table Management',
-    description: 'Optimize your restaurant layout',
+    description: 'Optimize restaurant layouts',
     image: '/photo.jpeg',
     link: '#tables',
+  },
+  {
+    id: 4,
+    title: 'Analytics & Insights',
+    description: 'Data-driven decision making',
+    image: '/photo.jpeg',
+    link: '#analytics',
   },
 ];
 
@@ -230,21 +230,22 @@ export default function CarouselSection() {
       <div className="py-16 md:py-24 lg:py-32 space-y-8 md:space-y-12">
         <AnimatedGroup preset="fade" className="relative z-10 max-w-xl space-y-4 md:space-y-6 text-left">
           <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
-            <span>Powerful Features</span>
+            <span>Elegant Features</span>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-            Visualize your restaurant&apos;s potential
+            Redefining hospitality standards
           </h2>
           <p className="text-base md:text-lg text-muted-foreground mt-4">
-            Transform your dining experience with our powerful management tools designed specifically for Indonesia&apos;s finest restaurants
+            Our thoughtful design simplifies reservations management while enhancing guest interactions, 
+            making it a valuable tool for both restaurants and their patrons.
           </p>
-            
+          
           <div className="mt-4 flex flex-wrap items-center gap-4">
             <Button className="rounded-full">
               Get Started
             </Button>
             <Button variant="outline" className="rounded-full">
-              <span>View Demo</span>
+              <span>Schedule Demo</span>
               <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
             </Button>
           </div>

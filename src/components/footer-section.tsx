@@ -52,10 +52,10 @@ const links = [
 
 export default function FooterSection() {
   return (
-    <footer className="bg-gradient-to-b from-background to-background/80 border-t">
+    <footer className="bg-muted text-foreground border-t border-muted/50">
       <SectionContainer className="py-16 md:py-24">
         <AnimatedGroup preset="slide" className="space-y-16">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-border/40">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-muted/40">
             {/* Brand */}
             <Link 
               href="/" 
@@ -71,7 +71,7 @@ export default function FooterSection() {
             {/* Social Icons */}
             <div className="flex items-center gap-6">
               <SocialLinks />
-              <div className="hidden md:block h-6 w-px bg-border/50"></div>
+              <div className="hidden md:block h-6 w-px bg-muted/50"></div>
               <Link 
                 href="#" 
                 className="hidden md:flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
@@ -88,7 +88,7 @@ export default function FooterSection() {
           </div>
 
           {/* Bottom */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 mt-10 border-t border-border/40 text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 mt-10 border-t border-muted/40 text-sm text-foreground/70">
             <p>© {new Date().getFullYear()} Revasi. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-6">
               <Link href="#" className="hover:text-foreground transition-colors">Terms</Link>

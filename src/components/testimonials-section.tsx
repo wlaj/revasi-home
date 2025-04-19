@@ -9,12 +9,11 @@ export default function TestimonialsSection() {
       <div className="space-y-8 md:space-y-16">
         <AnimatedGroup preset="blur-slide" className="relative z-10 mx-auto max-w-xl space-y-4 md:space-y-6 text-left">
           <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
-            <span>Trusted Testimonials</span>
+            <span>Client Experiences</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">Build by makers, loved by thousand developers</h2>
+          <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">Built for restaurateurs, loved by fine dining establishments</h2>
           <p className="text-base md:text-lg">
-            Gemini is evolving to be more than just the models. It supports an entire to the APIs and platforms helping
-            developers and businesses innovate.
+            Our close collaboration with fine dining restaurants ensures that Revasi meets the high standards and unique demands of the industry.
           </p>
         </AnimatedGroup>
 
@@ -22,40 +21,34 @@ export default function TestimonialsSection() {
           <Card className="grid grid-rows-[auto_1fr] gap-8 sm:col-span-2 sm:p-6 lg:row-span-2">
             <CardHeader>
               <AnimatedGroup preset="fade">
-                <img
-                  className="h-6 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/nike.svg"
-                  alt="Nike Logo"
-                  height="24"
-                  width="auto"
-                />
+                <h3 className="text-xl font-semibold">Locavore NXT</h3>
+                <p className="text-muted-foreground text-sm">A hyper local restaurant hub inspired by nature</p>
               </AnimatedGroup>
             </CardHeader>
             <CardContent>
               <AnimatedGroup preset="fade">
                 <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
                   <p className="text-lg md:text-xl font-medium">
-                    Tailus has transformed the way I develop web applications. Their extensive collection of UI
-                    components, blocks, and templates has significantly accelerated my workflow. The flexibility to
-                    customize every aspect allows me to create unique user experiences. Tailus is a game-changer for
-                    modern web development
+                    Revasi has transformed how we manage our reservations. The system&apos;s elegance and reliability perfectly 
+                    complement our commitment to fine dining excellence. Its thoughtful design has streamlined our operations
+                    and enhanced the experience for both our staff and guests.
                   </p>
 
                   <div className="grid grid-cols-[auto_1fr] items-center gap-3">
                     <Avatar className="size-12">
                       <AvatarImage
                         src="https://tailus.io/images/reviews/shekinah.webp"
-                        alt="Shekinah Tshiokufila"
+                        alt="Chef Ray Adriansyah"
                         height="400"
                         width="400"
                         loading="lazy"
                       />
-                      <AvatarFallback>ST</AvatarFallback>
+                      <AvatarFallback>RA</AvatarFallback>
                     </Avatar>
 
                     <div>
-                      <cite className="text-sm font-medium">Shekinah Tshiokufila</cite>
-                      <span className="text-muted-foreground block text-sm">Software Ingineer</span>
+                      <cite className="text-sm font-medium">Chef Ray Adriansyah</cite>
+                      <span className="text-muted-foreground block text-sm">Head Chef, Locavore NXT</span>
                     </div>
                   </div>
                 </blockquote>
@@ -68,23 +61,24 @@ export default function TestimonialsSection() {
               <AnimatedGroup preset="slide">
                 <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
                   <p className="text-lg md:text-xl font-medium">
-                    Tailus is really extraordinary and very practical, no need to break your head. A real gold mine.
+                    The guest profile feature has been invaluable for creating personalized dining experiences. Our returning
+                    customers are always impressed when we remember their preferences.
                   </p>
 
                   <div className="grid grid-cols-[auto_1fr] items-center gap-3">
                     <Avatar className="size-12">
                       <AvatarImage
                         src="https://tailus.io/images/reviews/jonathan.webp"
-                        alt="Jonathan Yombo"
+                        alt="Maya Sari"
                         height="400"
                         width="400"
                         loading="lazy"
                       />
-                      <AvatarFallback>JY</AvatarFallback>
+                      <AvatarFallback>MS</AvatarFallback>
                     </Avatar>
                     <div>
-                      <cite className="text-sm font-medium">Jonathan Yombo</cite>
-                      <span className="text-muted-foreground block text-sm">Software Ingineer</span>
+                      <cite className="text-sm font-medium">Maya Sari</cite>
+                      <span className="text-muted-foreground block text-sm">Restaurant Manager</span>
                     </div>
                   </div>
                 </blockquote>
@@ -97,23 +91,24 @@ export default function TestimonialsSection() {
               <AnimatedGroup preset="scale">
                 <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
                   <p>
-                    Great work on tailfolio template. This is one of the best personal website that I have seen so far!
+                    Revasi has made our table management so much more efficient. We&apos;ve increased turnover without sacrificing 
+                    the quality of service.
                   </p>
 
                   <div className="grid items-center gap-3 [grid-template-columns:auto_1fr]">
                     <Avatar className="size-12">
                       <AvatarImage
                         src="https://tailus.io/images/reviews/yucel.webp"
-                        alt="Yucel Faruksahan"
+                        alt="Putu Wijaya"
                         height="400"
                         width="400"
                         loading="lazy"
                       />
-                      <AvatarFallback>YF</AvatarFallback>
+                      <AvatarFallback>PW</AvatarFallback>
                     </Avatar>
                     <div>
-                      <cite className="text-sm font-medium">Yucel Faruksahan</cite>
-                      <span className="text-muted-foreground block text-sm">Creator, Tailkits</span>
+                      <cite className="text-sm font-medium">Putu Wijaya</cite>
+                      <span className="text-muted-foreground block text-sm">Operations Director</span>
                     </div>
                   </div>
                 </blockquote>
@@ -126,23 +121,24 @@ export default function TestimonialsSection() {
               <AnimatedGroup preset="scale">
                 <blockquote className="grid h-full grid-rows-[1fr_auto] gap-6">
                   <p>
-                    Great work on tailfolio template. This is one of the best personal website that I have seen so far!
+                    As a fine dining establishment, we appreciate the attention to detail in Revasi&apos;s design. It matches our 
+                    own commitment to excellence.
                   </p>
 
                   <div className="grid grid-cols-[auto_1fr] gap-3">
                     <Avatar className="size-12">
                       <AvatarImage
                         src="https://tailus.io/images/reviews/rodrigo.webp"
-                        alt="Rodrigo Aguilar"
+                        alt="Ketut Ariana"
                         height="400"
                         width="400"
                         loading="lazy"
                       />
-                      <AvatarFallback>YF</AvatarFallback>
+                      <AvatarFallback>KA</AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="text-sm font-medium">Rodrigo Aguilar</p>
-                      <span className="text-muted-foreground block text-sm">Creator, TailwindAwesome</span>
+                      <p className="text-sm font-medium">Ketut Ariana</p>
+                      <span className="text-muted-foreground block text-sm">Owner, Fine Dining Restaurant</span>
                     </div>
                   </div>
                 </blockquote>

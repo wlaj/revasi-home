@@ -12,10 +12,10 @@ export default function BlocksSection() {
       <div className="space-y-8 md:space-y-16">
         <AnimatedGroup preset="fade" className="text-left mb-10">
           <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
-            <span>Smart Solutions</span>
+            <span>Core Capabilities</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">
-            Advanced tools for optimal performance
+            Reliability and elegance in every detail
           </h2>
         </AnimatedGroup>
         <div className="grid gap-4 lg:grid-cols-2">
@@ -24,8 +24,8 @@ export default function BlocksSection() {
               <CardHeader className="pb-3">
                 <CardHeading
                   icon={MapIcon}
-                  title="Real time location tracking"
-                  description="Advanced tracking system, Instantly locate all your assets."
+                  title="Guest Experience"
+                  description="Create memorable dining journeys with detailed guest profiles and preferences."
                 />
               </CardHeader>
 
@@ -49,8 +49,8 @@ export default function BlocksSection() {
               <CardHeader className="pb-3">
                 <CardHeading
                   icon={Calendar}
-                  title="Advanced Scheduling"
-                  description="Scheduling system, Instantly locate all your assets."
+                  title="Advanced Reservations"
+                  description="Intelligent booking system that optimizes table turnover and guest flow."
                 />
               </CardHeader>
 
@@ -74,7 +74,7 @@ export default function BlocksSection() {
           <AnimatedGroup preset="blur-slide" className="group lg:col-span-2">
             <FeatureCard className="p-6">
               <p className="mx-auto my-6 max-w-md text-balance text-center text-xl md:text-2xl font-semibold">
-                Smart scheduling with automated reminders for maintenance.
+                Developed in close collaboration with restaurateurs in Bali
               </p>
 
               <div className="flex justify-center gap-6 overflow-hidden">
