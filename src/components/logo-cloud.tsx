@@ -14,7 +14,7 @@ export const LogoCloud = () => {
             <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
               <div className="flex">
                 <Image
-                  className="mx-auto h-5 w-fit dark:invert"
+                  className="mx-auto h-5 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/nvidia.svg"
                   alt="Nvidia Logo"
                   width={100}
@@ -24,7 +24,7 @@ export const LogoCloud = () => {
 
               <div className="flex">
                 <Image
-                  className="mx-auto h-4 w-fit dark:invert"
+                  className="mx-auto h-4 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/column.svg"
                   alt="Column Logo"
                   width={100}
@@ -33,7 +33,7 @@ export const LogoCloud = () => {
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-4 w-fit dark:invert"
+                  className="mx-auto h-4 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/github.svg"
                   alt="GitHub Logo"
                   width={100}
@@ -42,7 +42,7 @@ export const LogoCloud = () => {
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-5 w-fit dark:invert"
+                  className="mx-auto h-5 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/nike.svg"
                   alt="Nike Logo"
                   width={100}
@@ -51,7 +51,7 @@ export const LogoCloud = () => {
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-5 w-fit dark:invert"
+                  className="mx-auto h-5 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
                   alt="Lemon Squeezy Logo"
                   width={100}
@@ -60,7 +60,7 @@ export const LogoCloud = () => {
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-4 w-fit dark:invert"
+                  className="mx-auto h-4 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/laravel.svg"
                   alt="Laravel Logo"
                   width={100}
@@ -69,7 +69,7 @@ export const LogoCloud = () => {
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-7 w-fit dark:invert"
+                  className="mx-auto h-7 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/lilly.svg"
                   alt="Lilly Logo"
                   width={100}
@@ -79,7 +79,7 @@ export const LogoCloud = () => {
 
               <div className="flex">
                 <Image
-                  className="mx-auto h-6 w-fit dark:invert"
+                  className="mx-auto h-6 w-fit invert"
                   src="https://html.tailus.io/blocks/customers/openai.svg"
                   alt="OpenAI Logo"
                   width={100}

@@ -34,7 +34,7 @@ export default function BlocksSection() {
                 <div className="aspect-[21/9] p-1 px-6">
                   <DualModeImage
                     darkSrc="/details-2.png"
-                    lightSrc="/payments-light.png"
+                    lightSrc="/details-2.png"
                     alt="payments illustration"
                     width={1207}
                     height={929}
@@ -166,14 +166,14 @@ const DualModeImage = ({
   <>
     <Image
       src={darkSrc}
-      className={cn("hidden dark:block", className)}
+      className={cn("block", className)}
       alt={`${alt} dark`}
       width={width}
       height={height}
     />
     <Image
       src={lightSrc}
-      className={cn("shadow dark:hidden", className)}
+      className={cn("shadow hidden", className)}
       alt={`${alt} light`}
       width={width}
       height={height}
