@@ -12,7 +12,7 @@ const content = (
       This Cookie Policy explains how Digics, a sole proprietorship (eenmanszaak) 
       registered in the Netherlands with the Dutch Chamber of Commerce (KVK), 
       uses cookies and similar technologies when you visit our website (www.revasi.net) 
-      or use the Revasi reservation management system ("Software").
+      or use the Revasi reservation management system (&quot;Software&quot;).
     </p>
 
     <div className="my-4">
@@ -114,7 +114,7 @@ const content = (
         may include analytics providers (like Google Analytics), who help us understand how you use 
         our website and Software, or advertising partners, who may use cookies to show you relevant 
         advertisements on other websites. These third-party cookies are governed by the respective 
-        third party's privacy policy, not this Cookie Policy.
+        third party&apos;s privacy policy, not this Cookie Policy.
       </p>
     </div>
 
@@ -130,8 +130,8 @@ const content = (
         You can generally find out how to manage cookies in your browser settings by:
       </p>
       <ul className="list-disc pl-6 space-y-1">
-        <li>Clicking on the "Help" option in your browser menu</li>
-        <li>Searching your browser provider's website</li>
+        <li>Clicking on the &quot;Help&quot; option in your browser menu</li>
+        <li>Searching your browser provider&apos;s website</li>
         <li>Visiting www.aboutcookies.org or www.allaboutcookies.org for more information</li>
       </ul>
     </div>
@@ -170,7 +170,7 @@ const content = (
   </div>
 );
 
-const page = () => {
+const Page = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -199,4 +199,4 @@ const page = () => {
   );
 };
 
-export default page; 
+export default Page; 

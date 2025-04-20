@@ -9,11 +9,11 @@ const content = (
     <p>Effective Date: April 20</p>
     <p>2025 Last Updated: April 20, 2025</p>
     <p>
-      This Software License Agreement ("Agreement") governs the use of the
-      Revasi reservations management system ("Software") provided by Digics, a
+      This Software License Agreement (&quot;Agreement&quot;) governs the use of the
+      Revasi reservations management system (&quot;Software&quot;) provided by Digics, a
       sole proprietorship (eenmanszaak) registered in the Netherlands with the
       Dutch Chamber of Commerce (KVK). By accessing or using the Software, you
-      ("Customer") agree to be bound by the terms of this Agreement.
+      (&quot;Customer&quot;) agree to be bound by the terms of this Agreement.
     </p>
     <div className="my-4">
       <h2 className="text-lg font-bold">1. License Grant</h2>
@@ -27,7 +27,7 @@ const content = (
         non-exclusive, non-transferable, limited right to access and use the
         Software for internal business purposes only. The Customer may permit its
         employees and authorized contractors to use the Software solely for the
-        Customer's benefit, provided that the Customer shall be responsible for
+        Customer&apos;s benefit, provided that the Customer shall be responsible for
         all acts and omissions of such users.
       </p>
     </div>
@@ -58,7 +58,7 @@ const content = (
         the Customer or its authorized users. Digics will not access, use, or
         disclose this data except as necessary to provide the Software services
         or as required by law. Digics will maintain appropriate technical and
-        organizational measures to protect the Customer's data against
+        organizational measures to protect the Customer&apos;s data against
         unauthorized access or disclosure.
       </p>
       <p>
@@ -98,7 +98,7 @@ const content = (
         Either party may terminate this Agreement if the other party materially
         breaches this Agreement and fails to cure such breach within thirty (30)
         days after written notice. Upon termination, the Customer shall cease all
-        use of the Software and Digics will make the Customer's data available
+        use of the Software and Digics will make the Customer&apos;s data available
         for download for a period of thirty (30) days.
       </p>
     </div>
@@ -111,7 +111,7 @@ const content = (
         non-conformity.
       </p>
       <p>
-        EXCEPT AS EXPRESSLY PROVIDED HEREIN, THE SOFTWARE IS PROVIDED "AS IS"
+        EXCEPT AS EXPRESSLY PROVIDED HEREIN, THE SOFTWARE IS PROVIDED &quot;AS IS&quot;
         WITHOUT WARRANTY OF ANY KIND. DIGICS DISCLAIMS ALL OTHER WARRANTIES,
         EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED WARRANTIES
         OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
@@ -128,7 +128,7 @@ const content = (
         LOSSES.
       </p>
       <p>
-        DIGICS' TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT
+        DIGICS&apos; TOTAL LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT
         SHALL NOT EXCEED THE TOTAL AMOUNT PAID BY THE CUSTOMER IN THE TWELVE
         MONTHS PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.
       </p>
@@ -174,7 +174,7 @@ const content = (
   </div>
 );
 
-const page = () => {
+const Page = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -203,4 +203,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

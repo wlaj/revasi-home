@@ -9,8 +9,8 @@ const content = (
     <p>Effective Date: April 20</p>
     <p>2025 Last Updated: April 20, 2025</p>
     <p>
-      These Terms and Conditions ("Terms") govern your access to and use of the Revasi
-      reservation management system ("Software") and the Revasi website (www.revasi.net), 
+      These Terms and Conditions (&quot;Terms&quot;) govern your access to and use of the Revasi
+      reservation management system (&quot;Software&quot;) and the Revasi website (www.revasi.net), 
       provided by Digics, a sole proprietorship (eenmanszaak) registered in the Netherlands 
       with the Dutch Chamber of Commerce (KVK).
     </p>
@@ -25,12 +25,12 @@ const content = (
         For the purpose of these Terms:
       </p>
       <ul className="list-disc pl-6 space-y-1">
-        <li>"Software" refers to the Revasi reservation management system.</li>
-        <li>"Website" refers to www.revasi.net.</li>
-        <li>"Digics," "we," "us," and "our" refer to Digics, a Dutch sole proprietorship.</li>
-        <li>"You" and "your" refer to the individual or entity accessing or using the Software and website.</li>
-        <li>"Content" refers to information, data, text, software, images, videos, or other materials.</li>
-        <li>"Intellectual Property Rights" means all patent rights, copyright rights, mask work rights, moral rights, rights of publicity, trademark, trade dress and service mark rights, goodwill, trade secret rights, and other intellectual property rights as may now exist or hereafter come into existence, and all applications and registrations, renewals and extensions thereof, under the laws of any country, territory or other jurisdiction.</li>
+        <li>&quot;Software&quot; refers to the Revasi reservation management system.</li>
+        <li>&quot;Website&quot; refers to www.revasi.net.</li>
+        <li>&quot;Digics,&quot; &quot;we,&quot; &quot;us,&quot; and &quot;our&quot; refer to Digics, a Dutch sole proprietorship.</li>
+        <li>&quot;You&quot; and &quot;your&quot; refer to the individual or entity accessing or using the Software and website.</li>
+        <li>&quot;Content&quot; refers to information, data, text, software, images, videos, or other materials.</li>
+        <li>&quot;Intellectual Property Rights&quot; means all patent rights, copyright rights, mask work rights, moral rights, rights of publicity, trademark, trade dress and service mark rights, goodwill, trade secret rights, and other intellectual property rights as may now exist or hereafter come into existence, and all applications and registrations, renewals and extensions thereof, under the laws of any country, territory or other jurisdiction.</li>
       </ul>
     </div>
 
@@ -77,7 +77,7 @@ const content = (
         <li>Introduce any viruses, Trojan horses, worms, logic bombs, or other harmful material.</li>
         <li>Collect or harvest any personally identifiable information from other users.</li>
         <li>Impersonate or attempt to impersonate Digics, a Digics employee, another user, or any other person or entity.</li>
-        <li>Engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Software or website, or which may harm Digics or users of the Software or website.</li>
+        <li>Engage in any other conduct that restricts or inhibits anyone&apos;s use or enjoyment of the Software or website, or which may harm Digics or users of the Software or website.</li>
       </ul>
     </div>
 
@@ -118,7 +118,7 @@ const content = (
     <div className="my-4">
       <h2 className="text-lg font-bold">7. Disclaimer of Warranties</h2>
       <p className="mb-2">
-        YOUR USE OF THE SOFTWARE AND WEBSITE IS AT YOUR OWN RISK. THE SOFTWARE AND WEBSITE ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER DIGICS NOR ANY PERSON ASSOCIATED WITH DIGICS MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE SOFTWARE OR WEBSITE.
+        YOUR USE OF THE SOFTWARE AND WEBSITE IS AT YOUR OWN RISK. THE SOFTWARE AND WEBSITE ARE PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS, WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. NEITHER DIGICS NOR ANY PERSON ASSOCIATED WITH DIGICS MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE SOFTWARE OR WEBSITE.
       </p>
       <p className="mb-2">
         THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.
@@ -138,7 +138,7 @@ const content = (
     <div className="my-4">
       <h2 className="text-lg font-bold">9. Indemnification</h2>
       <p>
-        You agree to defend, indemnify, and hold harmless Digics, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Software or website.
+        You agree to defend, indemnify, and hold harmless Digics, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms or your use of the Software or website.
       </p>
     </div>
 
@@ -197,7 +197,7 @@ const content = (
   </div>
 );
 
-const page = () => {
+const Page = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -226,4 +226,4 @@ const page = () => {
   );
 };
 
-export default page; 
+export default Page; 

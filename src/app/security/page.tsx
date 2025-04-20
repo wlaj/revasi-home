@@ -12,11 +12,11 @@ const content = (
       This Security Policy outlines the security measures and practices implemented by Digics, 
       a sole proprietorship (eenmanszaak) registered in the Netherlands with the Dutch Chamber 
       of Commerce (KVK), to protect your data when using the Revasi reservation management 
-      system ("Software").
+      system (&quot;Software&quot;).
     </p>
     <p className="mt-2">
       At Revasi, we are committed to maintaining the security and confidentiality of 
-      our customers' data. This policy describes our security practices and the measures 
+      our customers&apos; data. This policy describes our security practices and the measures 
       we take to protect your information.
     </p>
 
@@ -176,7 +176,7 @@ const content = (
       <p>
         We continuously improve our security measures and may update this Security Policy from time 
         to time. When we make significant changes, we will notify our customers and update the 
-        "Last Updated" date at the top of this policy.
+        &quot;Last Updated&quot; date at the top of this policy.
       </p>
     </div>
 
@@ -195,7 +195,7 @@ const content = (
   </div>
 );
 
-const page = () => {
+const Page = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -224,4 +224,4 @@ const page = () => {
   );
 };
 
-export default page; 
+export default Page; 

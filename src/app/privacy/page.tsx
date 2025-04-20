@@ -12,7 +12,7 @@ const content = (
       This Privacy Policy describes how Digics, a sole proprietorship (eenmanszaak) 
       registered in the Netherlands with the Dutch Chamber of Commerce (KVK), 
       collects, uses, and discloses your information when you use the Revasi 
-      reservation management system ("Software").
+      reservation management system (&quot;Software&quot;).
     </p>
 
     <div className="my-4">
@@ -65,7 +65,7 @@ const content = (
         <li>Business partners with your consent</li>
       </ul>
       <p className="mt-2">
-        We do not sell your personal information or your customers' data to third parties.
+        We do not sell your personal information or your customers&apos; data to third parties.
       </p>
     </div>
 
@@ -121,7 +121,7 @@ const content = (
     </div>
 
     <div className="my-4">
-      <h2 className="text-lg font-bold">8. Children's Privacy</h2>
+      <h2 className="text-lg font-bold">8. Children&apos;s Privacy</h2>
       <p>
         Our Software is not intended for use by children under 16 years of age. We do not knowingly 
         collect personal information from children under 16. If you become aware that a child has 
@@ -134,7 +134,7 @@ const content = (
       <h2 className="text-lg font-bold">9. Changes to This Privacy Policy</h2>
       <p>
         We may update this Privacy Policy from time to time. We will notify you of any changes by 
-        posting the new Privacy Policy on this page and updating the "Last Updated" date. You are 
+        posting the new Privacy Policy on this page and updating the &quot;Last Updated&quot; date. You are 
         advised to review this Privacy Policy periodically for any changes.
       </p>
     </div>
@@ -162,7 +162,7 @@ const content = (
   </div>
 );
 
-const page = () => {
+const Page = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -191,4 +191,4 @@ const page = () => {
   );
 };
 
-export default page; 
+export default Page; 
