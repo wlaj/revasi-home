@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode } from 'react';
-import { motion, Variants } from 'motion/react';
+import { motion, Variants } from 'framer-motion';
 import React from 'react';
 
 export type PresetType =
@@ -23,8 +23,8 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
-  as?: React.ElementType;
-  asChild?: React.ElementType;
+  as?: 'div' | 'span' | 'ul' | 'li' | 'section' | 'article';
+  asChild?: 'div' | 'span' | 'li' | 'p';
 };
 
 const defaultContainerVariants: Variants = {
@@ -115,14 +115,26 @@ function AnimatedGroup({
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
-  const MotionComponent = React.useMemo(
-    () => motion.create(as as keyof JSX.IntrinsicElements),
-    [as]
-  );
-  const MotionChild = React.useMemo(
-    () => motion.create(asChild as keyof JSX.IntrinsicElements),
-    [asChild]
-  );
+  // Create motion components dynamically but safely
+  const MotionComponent = React.useMemo(() => {
+    switch(as) {
+      case 'span': return motion.span;
+      case 'ul': return motion.ul;
+      case 'li': return motion.li;
+      case 'section': return motion.section;
+      case 'article': return motion.article;
+      default: return motion.div;
+    }
+  }, [as]);
+
+  const MotionChild = React.useMemo(() => {
+    switch(asChild) {
+      case 'span': return motion.span;
+      case 'li': return motion.li;
+      case 'p': return motion.p;
+      default: return motion.div;
+    }
+  }, [asChild]);
 
   return (
     <MotionComponent

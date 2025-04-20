@@ -11,12 +11,12 @@ export const LogoCloud = () => {
             <p className="text-end text-sm">Powering the best teams</p>
           </div>
           <div className="relative py-6 md:w-[calc(100%-11rem)]">
-            <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
+            <InfiniteSlider className="flex items-center" speedOnHover={20} speed={40} gap={112}>
               <div className="flex">
                 <Image
-                  className="mx-auto h-5 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                  alt="Nvidia Logo"
+                  className="mx-auto h-8 w-fit invert"
+                  src="/logos/herbivore.png"
+                  alt="Herbivore Logo"
                   width={100}
                   height={100}
                 />
@@ -24,64 +24,18 @@ export const LogoCloud = () => {
 
               <div className="flex">
                 <Image
-                  className="mx-auto h-4 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/column.svg"
-                  alt="Column Logo"
+                  className="mx-auto h-8 w-fit invert"
+                  src="/logos/locavorenxt.png"
+                  alt="Locavore Logo"
                   width={100}
                   height={100}
                 />
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-4 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/github.svg"
-                  alt="GitHub Logo"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="flex">
-                <Image
-                  className="mx-auto h-5 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/nike.svg"
-                  alt="Nike Logo"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="flex">
-                <Image
-                  className="mx-auto h-5 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                  alt="Lemon Squeezy Logo"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="flex">
-                <Image
-                  className="mx-auto h-4 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/laravel.svg"
-                  alt="Laravel Logo"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="flex">
-                <Image
-                  className="mx-auto h-7 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/lilly.svg"
-                  alt="Lilly Logo"
-                  width={100}
-                  height={100}
-                />
-              </div>
-
-              <div className="flex">
-                <Image
-                  className="mx-auto h-6 w-fit invert"
-                  src="https://html.tailus.io/blocks/customers/openai.svg"
-                  alt="OpenAI Logo"
+                  className="mx-auto h-8 w-fit invert"
+                  src="/logos/nusantara.png"
+                  alt="Nusantara Logo"
                   width={100}
                   height={100}
                 />

@@ -42,7 +42,7 @@ export default function HeroSection() {
           <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,90%,85%,.12)_0,hsla(0,90%,45%,.06)_80%,transparent_100%)]" />
         </div>
         
-        <AnimatedGroup preset="blur-slide" className="relative z-20 mx-auto px-6 pt-32 lg:pb-16 lg:pt-48">
+        <AnimatedGroup preset="blur-slide" className="relative z-10 mx-auto px-6 pt-32 lg:pb-16 lg:pt-48">
           <div className="mx-auto max-w-4xl text-center">
             <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
               <span>Refined Reservations</span>
