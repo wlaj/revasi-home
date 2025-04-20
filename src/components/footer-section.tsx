@@ -42,10 +42,11 @@ const links = [
   {
     group: "Legal",
     items: [
-      { title: "License", href: "#" },
-      { title: "Privacy", href: "#" },
-      { title: "Cookies", href: "#" },
-      { title: "Security", href: "#" },
+      { title: "License", href: "/license" },
+      { title: "Terms", href: "/terms" },
+      { title: "Privacy", href: "/privacy" },
+      { title: "Cookies", href: "/cookies" },
+      { title: "Security", href: "/security" },
     ],
   },
 ];
@@ -91,10 +92,11 @@ export default function FooterSection() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 mt-10 border-t border-muted/40 text-sm text-foreground/70">
             <p>© {new Date().getFullYear()} Revasi. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-6">
-              <Link href="#" className="hover:text-foreground transition-colors">Terms</Link>
-              <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
-              <Link href="#" className="hover:text-foreground transition-colors">Cookies</Link>
-              <Link href="#" className="hover:text-foreground transition-colors">Sitemap</Link>
+              <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+              <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+              <Link href="/cookies" className="hover:text-foreground transition-colors">Cookies</Link>
+              <Link href="/license" className="hover:text-foreground transition-colors">License</Link>
+              <Link href="/security" className="hover:text-foreground transition-colors">Security</Link>
             </div>
           </div>
         </AnimatedGroup>
