@@ -11,9 +11,9 @@ export default function BlocksSection() {
     <SectionContainer>
       <div className="space-y-8 md:space-y-16">
         <AnimatedGroup preset="fade" className="text-left mb-10">
-          <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
+          {/* <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
             <span>Core Capabilities</span>
-          </div>
+          </div> */}
           <h2 className="text-3xl md:text-4xl font-medium lg:text-5xl">
             Reliability and elegance in every detail
           </h2>

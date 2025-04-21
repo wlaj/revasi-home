@@ -5,6 +5,7 @@ import { AnimatedGroup } from "./motion/animated-group";
 import { HeroHeader } from "./hero-header";
 import { LogoCloud } from "./logo-cloud";
 import { SectionContainer } from "./section-container";
+import HeroFormSection from "./hero-form-section";
 
 const transitionVariants = {
   item: {
@@ -44,9 +45,6 @@ export default function HeroSection() {
         
         <AnimatedGroup preset="blur-slide" className="relative z-10 mx-auto px-6 pt-32 lg:pb-16 lg:pt-48">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 mb-4 text-sm font-medium text-primary">
-              <span>Refined Reservations</span>
-            </div>
             <TextEffect
               preset="fade-in-blur"
               speedSegment={0.3}
@@ -63,8 +61,7 @@ export default function HeroSection() {
               as="p"
               className="mx-auto mt-8 md:mt-12 max-w-2xl text-pretty text-base md:text-lg"
             >
-              Revasi is a refined reservations management system designed for fine
-              dining restaurants. We collaborate with restaurateurs to streamline operations,
+              Revasi is a refined reservations management system designed for exclusive restaurants . We collaborate with restaurateurs to streamline operations,
               enhance guest experiences, and redefine hospitality standards.
             </TextEffect>
 
@@ -82,27 +79,7 @@ export default function HeroSection() {
               }}
               className="mt-8 md:mt-12"
             >
-              <form action="" className="mx-auto max-w-sm">
-                <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border border-muted pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
-                  <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
-
-                  <input
-                    placeholder="Your mail address"
-                    className="h-12 w-full bg-transparent pl-12 focus:outline-none"
-                    type="email"
-                  />
-
-                  <div className="md:pr-1.5 lg:pr-0">
-                    <Button aria-label="submit" size="sm" variant="ghost">
-                      <span className="hidden md:block">Get Started</span>
-                      <SendHorizonal
-                        className="relative mx-auto size-5 md:hidden"
-                        strokeWidth={2}
-                      />
-                    </Button>
-                  </div>
-                </div>
-              </form>
+              <HeroFormSection />
             </AnimatedGroup>
           </div>
         </AnimatedGroup>

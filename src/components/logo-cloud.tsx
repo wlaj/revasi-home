@@ -8,7 +8,7 @@ export const LogoCloud = () => {
       <div className="group relative m-auto max-w-6xl px-6">
         <div className="flex flex-col items-center md:flex-row">
           <div className="inline md:max-w-44 md:border-r md:pr-6">
-            <p className="text-end text-sm">Powering the best teams</p>
+            <p className="text-end text-sm">Collaborating with</p>
           </div>
           <div className="relative py-6 md:w-[calc(100%-11rem)]">
             <InfiniteSlider className="flex items-center" speedOnHover={20} speed={40} gap={112}>
