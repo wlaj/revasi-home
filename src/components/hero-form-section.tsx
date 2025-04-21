@@ -64,7 +64,7 @@ const HeroFormSection = () => {
       </form>
 
       <p className="mt-2 text-sm font-mono text-muted-foreground">
-        And we'll email you our demo link.
+        And we&apos;ll email you our demo link.
       </p>
     </div>
   );
