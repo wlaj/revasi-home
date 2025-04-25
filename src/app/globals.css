@@ -1,13 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-body {
-  font-family: inherit;
-}
 
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
+@theme {
+  --color-primary: #FF0000;
+  --color-secondary: white;
+  --color-secondary-foreground: black;
+  --color-background: black;
+  --color-foreground: white;
+  --color-muted: #222222;
+  --color-muted-foreground: #666666;
+  --radius: 0.5rem;
 }
