@@ -2,7 +2,6 @@ import { Mail, SendHorizonal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TextEffect } from "./motion/text-effect";
 import { AnimatedGroup } from "./motion/animated-group";
-import { HeroHeader } from "./hero-header";
 import { LogoCloud } from "./logo-cloud";
 import { SectionContainer } from "./section-container";
 import HeroFormSection from "./hero-form-section";
@@ -30,8 +29,6 @@ const transitionVariants = {
 export default function HeroSection() {
   return (
     <>
-      <HeroHeader />
-
       <SectionContainer className="relative overflow-hidden" noPadding>
         {/* Background gradients */}
         <div

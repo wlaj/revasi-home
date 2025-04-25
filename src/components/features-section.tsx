@@ -9,11 +9,10 @@ export default function FeaturesSection() {
       <div className="space-y-8 md:space-y-12">
         <AnimatedGroup preset="blur-slide" className="relative z-10 max-w-2xl">
           <h2 className="text-3xl md:text-4xl font-semibold lg:text-5xl">
-            Built for Scaling teams
+            Tailored for Fine Dining Excellence
           </h2>
           <p className="mt-4 md:mt-6 text-base md:text-lg">
-            Empower your team with workflows that adapt to your needs, whether
-            you prefer git synchronization or a AI Agents interface.
+            Elevate your restaurant operations with a reservation system designed specifically for Indonesia&apos;s high-end culinary experiences. Balance elegance with efficiency.
           </p>
         </AnimatedGroup>
         
@@ -39,38 +38,38 @@ export default function FeaturesSection() {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <Zap className="size-4" />
-              <h3 className="text-sm font-medium">Faaast</h3>
+              <h3 className="text-sm font-medium">Lightning Fast</h3>
             </div>
             <p className="text-muted-foreground text-sm">
-              It supports an entire helping developers and innovate.
+              Instant booking confirmations and real-time table availability that keeps pace with busy service periods.
             </p>
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Cpu className="size-4" />
-              <h3 className="text-sm font-medium">Powerful</h3>
+              <h3 className="text-sm font-medium">Customizable</h3>
             </div>
             <p className="text-muted-foreground text-sm">
-              It supports an entire helping developers and businesses.
+              Adapt to your unique service style with flexible seating arrangements and personalized guest preferences.
             </p>
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Lock className="size-4" />
-              <h3 className="text-sm font-medium">Security</h3>
+              <h3 className="text-sm font-medium">Private & Secure</h3>
             </div>
             <p className="text-muted-foreground text-sm">
-              It supports an helping developers businesses innovate.
+              Protect guest information with enterprise-grade security while maintaining discretion for VIP clientele.
             </p>
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <Sparkles className="size-4" />
 
-              <h3 className="text-sm font-medium">AI Powered</h3>
+              <h3 className="text-sm font-medium">Smart Insights</h3>
             </div>
             <p className="text-muted-foreground text-sm">
-              It supports an helping developers businesses innovate.
+              Leverage advanced analytics to optimize seating capacity, predict busy periods, and enhance guest experiences.
             </p>
           </div>
         </AnimatedGroup>

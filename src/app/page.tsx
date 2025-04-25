@@ -14,12 +14,12 @@ export default async function Home() {
   return (
     <main>
       <HeroSection />
-      {/* <FeaturesSection /> */}
+      <FeaturesSection />
       <StatsSection />
       {/* <IntegrationsSection /> */}
       <CarouselSection />
       <BlocksSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <FooterSection />
     </main>
   );
