@@ -75,18 +75,87 @@ const mockRestaurants = [
 
 function SearchContent() {
   const searchParams = useSearchParams();
-  const reservationType = searchParams.get("reservationType") || "Dine in";
-  const location = searchParams.get("location") || "";
-  const date = searchParams.get("date") || "";
-  const time = searchParams.get("time") || "";
-  const partySize = searchParams.get("partySize") || "2";
+  const [reservationParams, setReservationParams] = useState({
+    reservationType: searchParams.get("reservationType") || "Dine in",
+    location: searchParams.get("location") || "",
+    date: searchParams.get("date") || "",
+    time: searchParams.get("time") || "",
+    partySize: searchParams.get("partySize") || "2",
+  });
 
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<{
+    seating: string;
+    cuisines: string[];
+    lists: string;
+    priceRange: string;
+    rating: string;
+  }>({
     seating: "All Day",
     cuisines: [],
     lists: "All",
     priceRange: "All",
     rating: "All"
+  });
+
+  const handleReservationChange = (params: {
+    reservationType?: string;
+    location?: string;
+    partySize?: string;
+    date?: string;
+    time?: string;
+  }) => {
+    setReservationParams(prev => ({ ...prev, ...params }));
+  };
+
+  // Filter restaurants based on active filters
+  const filteredRestaurants = mockRestaurants.filter(restaurant => {
+    // Filter by cuisines
+    if (filters.cuisines.length > 0) {
+      const restaurantCuisine = restaurant.cuisine.toLowerCase();
+      const selectedCuisines = filters.cuisines.map((c: string) => c.toLowerCase());
+      if (!selectedCuisines.includes(restaurantCuisine)) {
+        return false;
+      }
+    }
+
+    // Filter by price range
+    if (filters.priceRange !== "All") {
+      if (restaurant.priceRange !== filters.priceRange) {
+        return false;
+      }
+    }
+
+    // Filter by rating
+    if (filters.rating !== "All") {
+      const ratingThreshold = parseFloat(filters.rating);
+      if (restaurant.rating < ratingThreshold) {
+        return false;
+      }
+    }
+
+    // Filter by lists (restaurant type)
+    if (filters.lists !== "All") {
+      const restaurantTags = restaurant.tags.map(tag => tag.toLowerCase());
+      switch (filters.lists.toLowerCase()) {
+        case "fine dining":
+          if (!restaurantTags.includes("fine dining") && !restaurantTags.includes("luxury")) {
+            return false;
+          }
+          break;
+        case "casual":
+          if (restaurantTags.includes("fine dining") || restaurantTags.includes("luxury")) {
+            return false;
+          }
+          break;
+        case "trendy":
+          if (!restaurantTags.includes("romantic") && !restaurantTags.includes("trendy")) {
+            return false;
+          }
+          break;
+      }
+    }
+
+    return true;
   });
 
   return (
@@ -98,11 +167,12 @@ function SearchContent() {
       <SearchFilterBar 
         filters={filters}
         onFiltersChange={setFilters}
-        reservationType={reservationType}
-        location={location}
-        partySize={partySize}
-        date={date}
-        time={time}
+        reservationType={reservationParams.reservationType}
+        location={reservationParams.location}
+        partySize={reservationParams.partySize}
+        date={reservationParams.date}
+        time={reservationParams.time}
+        onReservationChange={handleReservationChange}
       />
       
       {/* Main Content */}
@@ -119,6 +189,11 @@ function SearchContent() {
                 <h2 className="text-xl font-semibold">Top Rated</h2>
                 <p className="text-sm text-muted-foreground">
                   A crowd-sourced stamp of approval. The five-star treatment. Resy's top-rated restaurants according to you, the guests.
+                  {filteredRestaurants.length !== mockRestaurants.length && (
+                    <span className="block mt-1 font-medium">
+                      Showing {filteredRestaurants.length} of {mockRestaurants.length} restaurants
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -126,13 +201,13 @@ function SearchContent() {
 
           {/* Restaurant List */}
           <div className="flex-1 overflow-hidden">
-            <RestaurantList restaurants={mockRestaurants} />
+            <RestaurantList restaurants={filteredRestaurants} />
           </div>
         </div>
 
         {/* Right Panel - Map */}
         <div className="hidden md:block md:w-1/2">
-          <RestaurantMap restaurants={mockRestaurants} />
+          <RestaurantMap restaurants={filteredRestaurants} />
         </div>
       </div>
     </div>
