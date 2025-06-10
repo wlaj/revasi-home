@@ -8,17 +8,23 @@ import { MapPin, Star, ExternalLink } from "lucide-react";
 import { Restaurant } from "./restaurant-list";
 
 // Dynamic imports for Leaflet to avoid SSR issues
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let L: any;
-let MapContainer: any;
-let TileLayer: any;
-let Marker: any;
-let Popup: any;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let MapContainer: React.ComponentType<any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let TileLayer: React.ComponentType<any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let Marker: React.ComponentType<any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let Popup: React.ComponentType<any>;
 
 interface RestaurantMapProps {
   restaurants: Restaurant[];
 }
 
 const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mapRef = useRef<any>(null);
   const [leafletLoaded, setLeafletLoaded] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
@@ -37,6 +43,7 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants }) => {
         Popup = reactLeaflet.Popup;
 
         // Fix for default markers
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         delete (L.Icon.Default.prototype as any)._getIconUrl;
         L.Icon.Default.mergeOptions({
           iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',

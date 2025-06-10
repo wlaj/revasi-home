@@ -23,7 +23,13 @@ interface SearchFiltersProps {
     priceRange: string;
     rating: string;
   };
-  onFiltersChange: (filters: any) => void;
+  onFiltersChange: (filters: {
+    seating: string;
+    cuisines: string[];
+    lists: string;
+    priceRange: string;
+    rating: string;
+  }) => void;
   partySize: string;
   date: string;
   time: string;
