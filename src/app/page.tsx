@@ -1,3 +1,5 @@
+import CallToAction from "@/components/call-to-action";
+import FeaturedSection from "@/components/featured-section";
 import HeroSimpleSection from "@/components/hero-simple-section";
 import React from "react";
 
@@ -13,6 +15,8 @@ const Page = () => {
         <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,90%,85%,.12)_0,hsla(0,90%,45%,.06)_80%,transparent_100%)]" />
       </div>
       <HeroSimpleSection />
+      <FeaturedSection />
+      <CallToAction />
     </main>
   );
 };

@@ -307,7 +307,7 @@ const ReservationBar = () => {
   );
 
   return (
-    <div className="w-full max-w-5xl mx-auto py-8">
+    <div className="w-full mx-auto py-8">
       <Form {...form}>
         {/* Desktop Layout */}
         <form onSubmit={form.handleSubmit(onSubmit)} className="relative hidden lg:block">

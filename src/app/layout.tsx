@@ -5,6 +5,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { StagewiseToolbar } from "@stagewise/toolbar-next";
+import { HeroHeader } from "@/components/hero-header";
+import FooterSection from "@/components/footer-section";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +34,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <HeroHeader />
           {children}
+          <FooterSection />
           <Toaster />
         </ThemeProvider>
         <Analytics />
