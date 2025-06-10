@@ -4,8 +4,13 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { StagewiseToolbar } from "@stagewise/toolbar-next";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const stagewiseConfig = {
+  plugins: []
+};
 
 export const metadata: Metadata = {
   title: "Revasi - Reservations management system",
@@ -31,6 +36,9 @@ export default function RootLayout({
           <Toaster />
         </ThemeProvider>
         <Analytics />
+        {process.env.NODE_ENV === 'development' && (
+          <StagewiseToolbar config={stagewiseConfig} />
+        )}
       </body>
     </html>
   );
