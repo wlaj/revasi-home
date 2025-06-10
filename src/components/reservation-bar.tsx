@@ -148,15 +148,15 @@ const ReservationBar = () => {
     onClick?: () => void;
   }) => (
     <div className="relative">
-      <div className="text-xs text-gray-500 mb-1 font-medium">{label}</div>
+      <div className="text-xs text-neutral-400 mb-1 font-medium">{label}</div>
       <div
         className="flex items-center justify-between py-2 cursor-pointer"
         onClick={onClick}
       >
-        <div className="text-sm font-medium text-gray-900">{children}</div>
+        <div className="text-sm font-medium text-neutral-900">{children}</div>
         <ChevronDown
           className={cn(
-            "h-4 w-4 text-gray-400 transition-transform",
+            "h-4 w-4 text-neutral-400 transition-transform",
             isOpen && "rotate-180"
           )}
         />
@@ -176,7 +176,7 @@ const ReservationBar = () => {
               <FormControl>
                 <select
                   {...field}
-                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-gray-900 cursor-pointer w-full"
+                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-neutral-400 cursor-pointer w-full"
                 >
                   {reservationTypes.map((type) => (
                     <option key={type.value} value={type.value}>
@@ -191,7 +191,7 @@ const ReservationBar = () => {
         )}
       />
 
-      <div className="w-px h-12 bg-gray-200 hidden lg:block" />
+      <div className="w-px h-12 bg-neutral-800 hidden lg:block" />
 
       {/* Location */}
       <FormField
@@ -203,7 +203,7 @@ const ReservationBar = () => {
               <FormControl>
                 <select
                   {...field}
-                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-gray-900 cursor-pointer w-full"
+                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-neutral-400 cursor-pointer w-full"
                 >
                   <option value="">Select location</option>
                   {locations.map((location) => (
@@ -219,7 +219,7 @@ const ReservationBar = () => {
         )}
       />
 
-      <div className="w-px h-12 bg-gray-200 hidden lg:block" />
+      <div className="w-px h-12 bg-neutral-800 hidden lg:block" />
 
       {/* Date */}
       <FormField
@@ -231,7 +231,7 @@ const ReservationBar = () => {
               <FormControl>
                 <select
                   {...field}
-                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-gray-900 cursor-pointer w-full"
+                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-neutral-400 cursor-pointer w-full"
                 >
                   <option value="">Select date</option>
                   {dateOptions.map((date) => (
@@ -247,7 +247,7 @@ const ReservationBar = () => {
         )}
       />
 
-      <div className="w-px h-12 bg-gray-200 hidden lg:block" />
+      <div className="w-px h-12 bg-neutral-800 hidden lg:block" />
 
       {/* Time */}
       <FormField
@@ -259,7 +259,7 @@ const ReservationBar = () => {
               <FormControl>
                 <select
                   {...field}
-                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-gray-900 cursor-pointer w-full"
+                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-neutral-400 cursor-pointer w-full"
                 >
                   <option value="">Select time</option>
                   {timeOptions.map((time) => (
@@ -275,7 +275,7 @@ const ReservationBar = () => {
         )}
       />
 
-      <div className="w-px h-12 bg-gray-200 hidden lg:block" />
+      <div className="w-px h-12 bg-neutral-800 hidden lg:block" />
 
       {/* Party Size */}
       <FormField
@@ -289,7 +289,7 @@ const ReservationBar = () => {
                   {...field}
                   value={field.value}
                   onChange={(e) => field.onChange(Number(e.target.value))}
-                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-gray-900 cursor-pointer w-full"
+                  className="appearance-none bg-transparent border-0 outline-none text-sm font-medium text-neutral-400 cursor-pointer w-full"
                 >
                   {partySizeOptions.map((size) => (
                     <option key={size.value} value={size.value}>
@@ -311,16 +311,16 @@ const ReservationBar = () => {
       <Form {...form}>
         {/* Desktop Layout */}
         <form onSubmit={form.handleSubmit(onSubmit)} className="relative hidden lg:block">
-          <div className="flex items-center bg-white rounded-lg shadow-sm border border-gray-200 p-4 gap-8">
+          <div className="flex items-center bg-neutral-900/60 rounded-lg shadow-sm border border-neutral-800/80 p-4 gap-8">
             <FormFields />
 
             {/* Search Button */}
             <Button
               type="submit"
               size="icon"
-              className="bg-black text-white rounded-full w-12 h-12 flex-shrink-0 ml-4"
+              className="bg-primary/10 text-white rounded-full h-12 w-12 flex-shrink-0 ml-4"
             >
-              <Search className="h-5 w-5" />
+              <Search className="h-5 w-5 text-primary" />
             </Button>
           </div>
         </form>
