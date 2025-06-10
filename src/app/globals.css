@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 @theme {
   --color-primary: #FF0000;
@@ -9,4 +10,20 @@
   --color-muted: #222222;
   --color-muted-foreground: #666666;
   --radius: 0.5rem;
+}
+
+/* Leaflet custom styles */
+.leaflet-popup-content-wrapper {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border-radius: var(--radius);
+}
+
+.leaflet-popup-tip {
+  background: hsl(var(--background));
+}
+
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
 }

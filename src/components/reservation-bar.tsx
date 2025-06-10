@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Search, ChevronDown, Calendar, MapPin, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import {
   Form,
   FormControl,
@@ -41,6 +42,7 @@ type ReservationFormData = z.infer<typeof reservationSchema>;
 
 const ReservationBar = () => {
   const [open, setOpen] = React.useState(false);
+  const router = useRouter();
 
   const form = useForm<ReservationFormData>({
     resolver: zodResolver(reservationSchema),
@@ -56,7 +58,17 @@ const ReservationBar = () => {
   const onSubmit = (data: ReservationFormData) => {
     console.log("Reservation data:", data);
     setOpen(false);
-    // Handle form submission here
+    
+    // Create search params and navigate to search page
+    const searchParams = new URLSearchParams({
+      reservationType: data.reservationType,
+      location: data.location,
+      date: data.date,
+      time: data.time,
+      partySize: data.partySize.toString(),
+    });
+    
+    router.push(`/search?${searchParams.toString()}`);
   };
 
   const generateTimeOptions = () => {
