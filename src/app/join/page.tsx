@@ -13,7 +13,6 @@ export default async function Home() {
       <StatsSection />
       <CarouselSection />
       <BlocksSection />
-      <FooterSection />
     </main>
   );
 }

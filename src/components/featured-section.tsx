@@ -24,11 +24,18 @@ const featuredRestaurants = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
     image: "/restaurants/nusantara.jpg",
   },
+  {
+    id: 4,
+    title: "Peggy's Brass Knuckles",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    image: "/restaurants/peggysbrassknuckles.webp",
+  },
 ];
 
 const FeaturedSection = () => {
   return (
-    <SectionContainer noPadding>
+    <SectionContainer noPadding className="py-16 md:py-24">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <h2 className="text-2xl font-bold">Featured</h2>
