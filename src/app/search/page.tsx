@@ -4,7 +4,7 @@ import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchHeader from "@/components/search-header";
 import SearchFilterBar from "@/components/search-filter-bar";
-import RestaurantList from "@/components/restaurant-list";
+import RestaurantList, { Restaurant } from "@/components/restaurant-list";
 import RestaurantMap from "@/components/restaurant-map";
 import { HeroHeader } from "@/components/hero-header";
 import { StarIcon } from "lucide-react";
@@ -97,6 +97,8 @@ function SearchContent() {
     rating: "All"
   });
 
+  const [pinnedRestaurant, setPinnedRestaurant] = useState<Restaurant | null>(null);
+
   const handleReservationChange = (params: {
     reservationType?: string;
     location?: string;
@@ -158,6 +160,15 @@ function SearchContent() {
     return true;
   });
 
+  // Create final restaurant list with pinned restaurant at top
+  const finalRestaurantList = pinnedRestaurant 
+    ? [pinnedRestaurant, ...filteredRestaurants.filter(r => r.id !== pinnedRestaurant.id)]
+    : filteredRestaurants;
+
+  const handlePinRestaurant = (restaurant: Restaurant) => {
+    setPinnedRestaurant(restaurant);
+  };
+
   return (
     <div className="fixed inset-0 bg-background z-50">
       {/* Search Header */}
@@ -201,13 +212,13 @@ function SearchContent() {
 
           {/* Restaurant List */}
           <div className="flex-1 overflow-hidden">
-            <RestaurantList restaurants={filteredRestaurants} />
+            <RestaurantList restaurants={finalRestaurantList} />
           </div>
         </div>
 
         {/* Right Panel - Map */}
         <div className="hidden md:block md:w-1/2">
-          <RestaurantMap restaurants={filteredRestaurants} />
+          <RestaurantMap restaurants={filteredRestaurants} onPinRestaurant={handlePinRestaurant} />
         </div>
       </div>
     </div>

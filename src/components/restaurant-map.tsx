@@ -21,9 +21,10 @@ let Popup: React.ComponentType<any>;
 
 interface RestaurantMapProps {
   restaurants: Restaurant[];
+  onPinRestaurant?: (restaurant: Restaurant) => void;
 }
 
-const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants }) => {
+const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants, onPinRestaurant }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mapRef = useRef<any>(null);
   const [leafletLoaded, setLeafletLoaded] = useState(false);
@@ -144,10 +145,13 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants }) => {
               position={restaurant.coordinates}
               icon={createCustomIcon(restaurant)}
               eventHandlers={{
-                click: () => setSelectedRestaurant(restaurant),
+                click: () => {
+                  setSelectedRestaurant(restaurant);
+                  onPinRestaurant?.(restaurant);
+                },
               }}
             >
-              <Popup className="[&_.leaflet-popup-content-wrapper]:bg-background [&_.leaflet-popup-content-wrapper]:border [&_.leaflet-popup-content-wrapper]:border-neutral-700 [&_.leaflet-popup-content-wrapper]:rounded-lg [&_.leaflet-popup-content-wrapper]:shadow-xl [&_.leaflet-popup-content]:m-0 [&_.leaflet-popup-tip]:bg-background [&_.leaflet-popup-tip]:border-neutral-700">
+              {/* <Popup className="[&_.leaflet-popup-content-wrapper]:bg-background [&_.leaflet-popup-content-wrapper]:border [&_.leaflet-popup-content-wrapper]:border-neutral-700 [&_.leaflet-popup-content-wrapper]:rounded-lg [&_.leaflet-popup-content-wrapper]:shadow-xl [&_.leaflet-popup-content]:m-0 [&_.leaflet-popup-tip]:bg-background [&_.leaflet-popup-tip]:border-neutral-700">
                 <div className="min-w-[220px] p-4">
                   <div className="space-y-3">
                     <h3 className="font-semibold text-base">{restaurant.name}</h3>
@@ -177,7 +181,7 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants }) => {
                     </Button>
                   </div>
                 </div>
-              </Popup>
+              </Popup> */}
             </Marker>
           ))}
         </MapContainer>

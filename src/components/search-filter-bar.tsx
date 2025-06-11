@@ -11,6 +11,13 @@ import {
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { MapPin, SlidersHorizontal, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -151,8 +158,8 @@ const Calendar: React.FC<{
 
       {/* Days of Week Header */}
       <div className="grid grid-cols-7 gap-1 mb-2">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="h-8 flex items-center justify-center text-sm font-medium text-muted-foreground">
+        {daysOfWeek.map((day, index) => (
+          <div key={index} className="h-8 flex items-center justify-center text-sm font-medium text-muted-foreground">
             {day}
           </div>
         ))}
@@ -258,8 +265,6 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
     });
   };
 
-  const reservationText = `${formatDate(date)} ${formatTime(time)} ${partySize} guest${parseInt(partySize) > 1 ? 's' : ''}`;
-
   return (
     <div className="bg-background border-y border-neutral-800 px-6 py-4">
       <div className="flex items-center space-x-3">
@@ -317,8 +322,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         {/* Date, Time & Guests Combined */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="rounded-full px-4 py-2 h-auto">
-              {reservationText}
+            <Button variant="outline" className="rounded-full flex gap-2 px-4 py-2 h-auto">
+              <span className="text-sm border-r border-neutral-800 pr-2">{formatDate(date)}</span>
+              <span className="text-sm border-r border-neutral-800 pr-2">{formatTime(time)}</span>
+              <span className="text-sm">{partySize} guest{parseInt(partySize) > 1 ? 's' : ''}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-auto">
@@ -359,74 +366,89 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {/* More Filters Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="rounded-full px-4 py-2 h-auto flex items-center space-x-2">
+        {/* More Filters Dialog */}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="rounded-full border-neutral-800 px-4 py-2 h-auto flex items-center space-x-2">
               <SlidersHorizontal className="h-4 w-4" />
               <span>More filters</span>
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-56 max-h-80 overflow-y-auto">
-            <DropdownMenuLabel>Cuisines</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {cuisineOptions.map((cuisine) => (
-              <DropdownMenuCheckboxItem
-                key={cuisine}
-                checked={filters.cuisines.includes(cuisine)}
-                onCheckedChange={() => toggleCuisine(cuisine)}
-                className="cursor-pointer"
-              >
-                {cuisine}
-              </DropdownMenuCheckboxItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Price Range</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {["€", "€€", "€€€", "€€€€"].map((price) => (
-              <DropdownMenuItem
-                key={price}
-                onClick={() => onFiltersChange({ ...filters, priceRange: price })}
-                className={cn(
-                  "cursor-pointer",
-                  filters.priceRange === price && "bg-accent text-accent-foreground"
-                )}
-              >
-                {price}
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Restaurant Type</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {["All", "Fine Dining", "Casual", "Trendy"].map((list) => (
-              <DropdownMenuItem
-                key={list}
-                onClick={() => onFiltersChange({ ...filters, lists: list })}
-                className={cn(
-                  "cursor-pointer",
-                  filters.lists === list && "bg-accent text-accent-foreground"
-                )}
-              >
-                {list}
-              </DropdownMenuItem>
-            ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Minimum Rating</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {["All", "4.0", "4.5", "4.8"].map((rating) => (
-              <DropdownMenuItem
-                key={rating}
-                onClick={() => onFiltersChange({ ...filters, rating: rating })}
-                className={cn(
-                  "cursor-pointer",
-                  filters.rating === rating && "bg-accent text-accent-foreground"
-                )}
-              >
-                {rating === "All" ? "All ratings" : `${rating}+ stars`}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </DialogTrigger>
+          <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Filter Restaurants</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-medium text-sm mb-3">Cuisines</h4>
+                <div className="space-y-2">
+                  {cuisineOptions.map((cuisine) => (
+                    <label key={cuisine} className="flex items-center space-x-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={filters.cuisines.includes(cuisine)}
+                        onChange={() => toggleCuisine(cuisine)}
+                        className="rounded border-gray-300"
+                      />
+                      <span className="text-sm">{cuisine}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="border-t pt-4">
+                <h4 className="font-medium text-sm mb-3">Price Range</h4>
+                <div className="grid grid-cols-4 gap-2">
+                  {["€", "€€", "€€€", "€€€€"].map((price) => (
+                    <Button
+                      key={price}
+                      variant={filters.priceRange === price ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => onFiltersChange({ ...filters, priceRange: price })}
+                      className="h-8"
+                    >
+                      {price}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="border-t pt-4">
+                <h4 className="font-medium text-sm mb-3">Restaurant Type</h4>
+                <div className="space-y-1">
+                  {["All", "Fine Dining", "Casual", "Trendy"].map((list) => (
+                    <Button
+                      key={list}
+                      variant={filters.lists === list ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => onFiltersChange({ ...filters, lists: list })}
+                      className="w-full justify-start h-8"
+                    >
+                      {list}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="border-t pt-4">
+                <h4 className="font-medium text-sm mb-3">Minimum Rating</h4>
+                <div className="space-y-1">
+                  {["All", "4.0", "4.5", "4.8"].map((rating) => (
+                    <Button
+                      key={rating}
+                      variant={filters.rating === rating ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => onFiltersChange({ ...filters, rating: rating })}
+                      className="w-full justify-start h-8"
+                    >
+                      {rating === "All" ? "All ratings" : `${rating}+ stars`}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
