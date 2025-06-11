@@ -9,7 +9,6 @@ import RestaurantMap from "@/components/restaurant-map";
 import { HeroHeader } from "@/components/hero-header";
 import { StarIcon } from "lucide-react";
 
-// Mock restaurant data - in a real app, this would come from an API
 const mockRestaurants = [
   {
     id: 1,
@@ -20,11 +19,12 @@ const mockRestaurants = [
     priceRange: "€€€",
     location: "City centre",
     address: "Johannes Vermeerstraat 12, Amsterdam",
-    coordinates: [-8.507605, 115.264690] as [number, number],
+    coordinates: [-8.507605, 115.26469] as [number, number],
     image: "/restaurants/herbivore.jpg",
     tags: ["Fine dining", "Romantic", "Wine bar"],
     availability: "Sorry, we don't currently have any tables available for 2.",
     distance: "0.5 km",
+    url: "https://www.herbivore.nl/",
   },
   {
     id: 2,
@@ -35,11 +35,12 @@ const mockRestaurants = [
     priceRange: "€€€",
     location: "City Centre",
     address: "Oosterdokskade 8, Amsterdam",
-    coordinates: [-8.507670, 115.264850] as [number, number],
+    coordinates: [-8.50767, 115.26485] as [number, number],
     image: "/restaurants/nusantara.jpg",
     tags: ["Floating restaurant", "Traditional", "Dim sum"],
     availability: "Sorry, we don't currently have any tables available for 2.",
     distance: "0.8 km",
+    url: "https://nusantara.nl/",
   },
   {
     id: 3,
@@ -50,26 +51,28 @@ const mockRestaurants = [
     priceRange: "€€",
     location: "Museum Quarter",
     address: "Museumplein 15, Amsterdam",
-    coordinates: [-8.539100, 115.266800] as [number, number],
+    coordinates: [-8.5391, 115.2668] as [number, number],
     image: "/restaurants/locavorenxt.jpg",
     tags: ["Pizza", "Pasta", "Family friendly"],
     availability: "Available now",
     distance: "1.2 km",
+    url: "https://locavorenxt.nl/",
   },
   {
     id: 4,
-    name: "Peggy's Brass Knuckles",
+    name: "Peggy‘s Brass Knuckles",
     rating: 4.9,
     reviews: 45,
     cuisine: "European",
     priceRange: "€€€€",
     location: "Central Station",
     address: "Spuistraat 172, Amsterdam",
-    coordinates: [-6.244250, 106.797900] as [number, number],
+    coordinates: [-6.24425, 106.7979] as [number, number],
     image: "/restaurants/peggysbrassknuckles.webp",
     tags: ["Luxury", "Historic", "Cocktails"],
     availability: "Available at 8:00 PM",
     distance: "0.3 km",
+    url: "https://www.peggysbrassknuckles.com/",
   },
 ];
 
@@ -94,10 +97,12 @@ function SearchContent() {
     cuisines: [],
     lists: "All",
     priceRange: "All",
-    rating: "All"
+    rating: "All",
   });
 
-  const [pinnedRestaurant, setPinnedRestaurant] = useState<Restaurant | null>(null);
+  const [pinnedRestaurant, setPinnedRestaurant] = useState<Restaurant | null>(
+    null
+  );
 
   const handleReservationChange = (params: {
     reservationType?: string;
@@ -106,15 +111,17 @@ function SearchContent() {
     date?: string;
     time?: string;
   }) => {
-    setReservationParams(prev => ({ ...prev, ...params }));
+    setReservationParams((prev) => ({ ...prev, ...params }));
   };
 
   // Filter restaurants based on active filters
-  const filteredRestaurants = mockRestaurants.filter(restaurant => {
+  const filteredRestaurants = mockRestaurants.filter((restaurant) => {
     // Filter by cuisines
     if (filters.cuisines.length > 0) {
       const restaurantCuisine = restaurant.cuisine.toLowerCase();
-      const selectedCuisines = filters.cuisines.map((c: string) => c.toLowerCase());
+      const selectedCuisines = filters.cuisines.map((c: string) =>
+        c.toLowerCase()
+      );
       if (!selectedCuisines.includes(restaurantCuisine)) {
         return false;
       }
@@ -137,20 +144,29 @@ function SearchContent() {
 
     // Filter by lists (restaurant type)
     if (filters.lists !== "All") {
-      const restaurantTags = restaurant.tags.map(tag => tag.toLowerCase());
+      const restaurantTags = restaurant.tags.map((tag) => tag.toLowerCase());
       switch (filters.lists.toLowerCase()) {
         case "fine dining":
-          if (!restaurantTags.includes("fine dining") && !restaurantTags.includes("luxury")) {
+          if (
+            !restaurantTags.includes("fine dining") &&
+            !restaurantTags.includes("luxury")
+          ) {
             return false;
           }
           break;
         case "casual":
-          if (restaurantTags.includes("fine dining") || restaurantTags.includes("luxury")) {
+          if (
+            restaurantTags.includes("fine dining") ||
+            restaurantTags.includes("luxury")
+          ) {
             return false;
           }
           break;
         case "trendy":
-          if (!restaurantTags.includes("romantic") && !restaurantTags.includes("trendy")) {
+          if (
+            !restaurantTags.includes("romantic") &&
+            !restaurantTags.includes("trendy")
+          ) {
             return false;
           }
           break;
@@ -161,21 +177,29 @@ function SearchContent() {
   });
 
   // Create final restaurant list with pinned restaurant at top
-  const finalRestaurantList = pinnedRestaurant 
-    ? [pinnedRestaurant, ...filteredRestaurants.filter(r => r.id !== pinnedRestaurant.id)]
+  const finalRestaurantList = pinnedRestaurant
+    ? [
+        pinnedRestaurant,
+        ...filteredRestaurants.filter((r) => r.id !== pinnedRestaurant.id),
+      ]
     : filteredRestaurants;
 
   const handlePinRestaurant = (restaurant: Restaurant) => {
     setPinnedRestaurant(restaurant);
   };
 
+  const handleTimeSelect = (restaurantId: number, time: string) => {
+    // Handle time selection - could navigate to booking page or show booking form
+    console.log(`Selected time ${time} for restaurant ${restaurantId}`);
+  };
+
   return (
     <div className="fixed inset-0 bg-background z-50">
       {/* Search Header */}
       <HeroHeader variant="search" fullWidth={true} />
-      
+
       {/* Filter Bar */}
-      <SearchFilterBar 
+      <SearchFilterBar
         filters={filters}
         onFiltersChange={setFilters}
         reservationType={reservationParams.reservationType}
@@ -185,7 +209,7 @@ function SearchContent() {
         time={reservationParams.time}
         onReservationChange={handleReservationChange}
       />
-      
+
       {/* Main Content */}
       <div className="flex h-[calc(100vh-128px)]">
         {/* Left Panel - Restaurant List */}
@@ -199,10 +223,13 @@ function SearchContent() {
               <div>
                 <h2 className="text-xl font-semibold">Top Rated</h2>
                 <p className="text-sm text-muted-foreground">
-                  A crowd-sourced stamp of approval. The five-star treatment. Resy&apos;s top-rated restaurants according to you, the guests.
+                  A crowd-sourced stamp of approval. The five-star treatment.
+                  Resy&apos;s top-rated restaurants according to you, the
+                  guests.
                   {filteredRestaurants.length !== mockRestaurants.length && (
                     <span className="block mt-1 font-medium">
-                      Showing {filteredRestaurants.length} of {mockRestaurants.length} restaurants
+                      Showing {filteredRestaurants.length} of{" "}
+                      {mockRestaurants.length} restaurants
                     </span>
                   )}
                 </p>
@@ -212,13 +239,21 @@ function SearchContent() {
 
           {/* Restaurant List */}
           <div className="flex-1 overflow-hidden">
-            <RestaurantList restaurants={finalRestaurantList} />
+            <RestaurantList
+              restaurants={finalRestaurantList}
+              searchDate={reservationParams.date}
+              searchPartySize={parseInt(reservationParams.partySize)}
+              onTimeSelect={handleTimeSelect}
+            />
           </div>
         </div>
 
         {/* Right Panel - Map */}
         <div className="hidden md:block md:w-1/2">
-          <RestaurantMap restaurants={filteredRestaurants} onPinRestaurant={handlePinRestaurant} />
+          <RestaurantMap
+            restaurants={filteredRestaurants}
+            onPinRestaurant={handlePinRestaurant}
+          />
         </div>
       </div>
     </div>
@@ -227,15 +262,19 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-800 mx-auto"></div>
-          <p className="text-muted-foreground">Searching for restaurants...</p>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-background">
+          <div className="text-center space-y-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-neutral-800 mx-auto"></div>
+            <p className="text-muted-foreground">
+              Searching for restaurants...
+            </p>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <SearchContent />
     </Suspense>
   );
-} 
+}

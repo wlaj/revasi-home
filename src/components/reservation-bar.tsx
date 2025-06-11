@@ -48,9 +48,9 @@ const ReservationBar = () => {
     resolver: zodResolver(reservationSchema),
     defaultValues: {
       reservationType: "Dine in",
-      location: "",
-      date: "",
-      time: "",
+      location: "Bali",
+      date: `${new Date().toISOString().split("T")[0]}`,
+      time: "now",
       partySize: 2,
     },
   });
@@ -136,16 +136,12 @@ const ReservationBar = () => {
   const partySizeOptions = generatePartySizeOptions();
 
   const reservationTypes = [
-    { value: "Dine in", display: "Dine in" },
-    { value: "Takeout", display: "Takeout" },
-    { value: "Delivery", display: "Delivery" },
+    { value: "Dine in", display: "Dine in" }
   ];
 
   const locations = [
-    { value: "Hong Kong", display: "Hong Kong" },
-    { value: "Singapore", display: "Singapore" },
-    { value: "Tokyo", display: "Tokyo" },
-    { value: "Bangkok", display: "Bangkok" },
+    { value: "Bali", display: "Bali" },
+    { value: "Jakarta", display: "Jakarta" },
   ];
 
   const DropdownField = ({
