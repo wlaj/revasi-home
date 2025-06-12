@@ -13,9 +13,9 @@ export default function FrequentAskedQuestions() {
   const faqItems = [
     {
       id: "item-1",
-      question: "How long does shipping take?",
+      question: "How does it work?",
       answer:
-        "Standard shipping takes 3-5 business days, depending on your location. Express shipping options are available at checkout for 1-2 business day delivery.",
+        "We use a combination of AI and human expertise to find the best restaurant for you. We also use a combination of AI and human expertise to find the best restaurant for you. We also use a combination of AI and human expertise to find the best restaurant for you.",
     },
     {
       id: "item-2",
@@ -60,13 +60,13 @@ export default function FrequentAskedQuestions() {
           <Accordion
             type="single"
             collapsible
-            className="bg-card ring-muted w-full rounded-2xl border px-8 py-3 shadow-sm ring-4 dark:ring-0"
+            className="bg-card ring-neutral-800 border-neutral-700 w-full rounded-2xl border px-8 py-3 shadow-sm ring-4 dark:ring-0"
           >
             {faqItems.map((item) => (
               <AccordionItem
                 key={item.id}
                 value={item.id}
-                className="border-dashed"
+                className="border-neutral-800"
               >
                 <AccordionTrigger className="cursor-pointer text-base hover:no-underline">
                   {item.question}

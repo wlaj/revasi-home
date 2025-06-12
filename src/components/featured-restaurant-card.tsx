@@ -42,7 +42,7 @@ const FeaturedRestaurantCard = ({
         <div className="flex flex-col gap-2 bg-neutral-900/60 p-4">
           <p className="text-sm text-neutral-400">{title}</p>
           <h3 className="text-lg font-bold transition-colors duration-200 group-hover:text-white">{title}</h3>
-          <p className="text-sm text-neutral-400">{description}</p>
+          <p className="text-sm text-neutral-400 line-clamp-3">{description}</p>
         </div>
       </div>
     </Link>
