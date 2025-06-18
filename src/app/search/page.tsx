@@ -285,9 +285,6 @@ function SearchContent() {
               <div>
                 <h2 className="text-xl font-semibold">Top Rated</h2>
                 <p className="text-sm text-muted-foreground">
-                  A crowd-sourced stamp of approval. The five-star treatment.
-                  Resy&apos;s top-rated restaurants according to you, the
-                  guests.
                   {filteredRestaurants.length !== mockRestaurants.length && (
                     <span className="block mt-1 font-medium">
                       Showing {filteredRestaurants.length} of{" "}

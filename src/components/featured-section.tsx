@@ -42,10 +42,9 @@ const FeaturedSection = () => {
     <SectionContainer noPadding className="py-16 md:py-24">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4">
-          <h2 className="text-2xl font-bold">Featured</h2>
+          <h2 className="text-2xl font-bold">Featured Restaurants</h2>
           <p className="text-neutral-400">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            quos.
+            We partner with the best restaurants in Jakarta and Bali to offer you the best dining experience.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

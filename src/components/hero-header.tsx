@@ -89,7 +89,7 @@ export const HeroHeader = ({
                 >
                   <Link
                     className="flex items-center gap-2"
-                    href="mailto:lucas@digics.net"
+                    href="mailto:lucas@digics.net?cc=regilio@locavorenxt.com"
                   >
                     <MailIcon className="size-4" />
                     Contact us
@@ -101,7 +101,7 @@ export const HeroHeader = ({
                   type="submit"
                   className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
                 >
-                  <Link href="mailto:lucas@digics.net">
+                  <Link href="mailto:lucas@digics.net?cc=regilio@locavorenxt.com">
                     <MailIcon className="size-4" />
                     Contact us
                   </Link>
