@@ -2,14 +2,24 @@
 @import "leaflet/dist/leaflet.css";
 
 @theme {
-  --color-primary: #FF0000;
+  --color-primary: #DC2626;
   --color-secondary: white;
+  --color-border: #222222;
   --color-secondary-foreground: black;
   --color-background: black;
   --color-foreground: white;
   --color-muted: #222222;
   --color-muted-foreground: #666666;
   --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 /* Leaflet custom styles */

@@ -30,6 +30,7 @@ export interface Restaurant {
   availability: string;
   distance: string;
   url: string;
+  reservation_url: string;
 }
 
 interface RestaurantListProps {
@@ -66,8 +67,7 @@ const RestaurantCard = ({
 
   const handleDialogTimeSelect = (time: string) => {
     setSelectedTime(time);
-    // Close dialog and potentially proceed with reservation
-    setDialogOpen(false);
+    // Don't close dialog immediately - let user see selection and decide to reserve
     onTimeSelect?.(restaurant.id, time);
   };
 

@@ -42,22 +42,9 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   date,
   time,
 }) => {
-
   const seatingOptions = ["All Day", "Today", "Tomorrow", "This Week"];
-  const cuisineOptions = [
-    "French",
-    "Italian",
-    "Chinese",
-    "Japanese",
-    "Mediterranean",
-    "American",
-    "Thai",
-    "Indian",
-    "Mexican",
-    "Dutch",
-    "European",
-  ];
-  const listOptions = ["All", "Fine Dining", "Casual", "Quick Bites", "Trendy"];
+  const cuisineOptions = ["Indonesian", "Western"];
+  const listOptions = ["All", "Fine Dining", "Casual"];
 
   const formatDate = (dateString: string) => {
     if (!dateString) return "Select date";
@@ -68,11 +55,11 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
     if (date.toDateString() === today.toDateString()) return "Today";
     if (date.toDateString() === tomorrow.toDateString()) return "Tomorrow";
-    
-    return date.toLocaleDateString("en-US", { 
-      weekday: "short", 
-      month: "short", 
-      day: "numeric" 
+
+    return date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -80,22 +67,22 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
     if (!timeString) return "Select time";
     if (timeString === "now") return "Now";
     if (timeString === "asap") return "ASAP";
-    
+
     const [hours, minutes] = timeString.split(":");
     const date = new Date();
     date.setHours(parseInt(hours), parseInt(minutes));
-    return date.toLocaleTimeString("en-US", { 
-      hour: "numeric", 
-      minute: "2-digit", 
-      hour12: true 
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
     });
   };
 
   const toggleCuisine = (cuisine: string) => {
     const newCuisines = filters.cuisines.includes(cuisine)
-      ? filters.cuisines.filter(c => c !== cuisine)
+      ? filters.cuisines.filter((c) => c !== cuisine)
       : [...filters.cuisines, cuisine];
-    
+
     onFiltersChange({
       ...filters,
       cuisines: newCuisines,
@@ -108,14 +95,15 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
       cuisines: [],
       lists: "All",
       priceRange: "All",
-      rating: "All"
+      rating: "All",
     });
   };
 
-  const hasActiveFilters = filters.cuisines.length > 0 || 
-                          filters.lists !== "All" || 
-                          filters.priceRange !== "All" || 
-                          filters.rating !== "All";
+  const hasActiveFilters =
+    filters.cuisines.length > 0 ||
+    filters.lists !== "All" ||
+    filters.priceRange !== "All" ||
+    filters.rating !== "All";
 
   return (
     <div className="bg-background border-b border-neutral-800">
@@ -124,7 +112,9 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-2">
             <Users className="h-4 w-4 text-muted-foreground" />
-            <span>{partySize} guest{parseInt(partySize) > 1 ? 's' : ''}</span>
+            <span>
+              {partySize} guest{parseInt(partySize) > 1 ? "s" : ""}
+            </span>
           </div>
           <div className="flex items-center space-x-2">
             <Calendar className="h-4 w-4 text-muted-foreground" />
@@ -168,7 +158,8 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
                 }}
                 className={cn(
                   "cursor-pointer",
-                  filters.seating === option && "bg-accent text-accent-foreground"
+                  filters.seating === option &&
+                    "bg-accent text-accent-foreground"
                 )}
               >
                 {option}
@@ -190,7 +181,10 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
               <ChevronDown className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-56 max-h-80 overflow-y-auto">
+          <DropdownMenuContent
+            align="start"
+            className="w-56 max-h-80 overflow-y-auto"
+          >
             <DropdownMenuLabel>Cuisines</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {cuisineOptions.map((cuisine) => (
@@ -263,4 +257,4 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   );
 };
 
-export default SearchFilters; 
+export default SearchFilters;

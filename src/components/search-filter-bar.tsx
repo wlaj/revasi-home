@@ -18,7 +18,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { MapPin, SlidersHorizontal, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  MapPin,
+  SlidersHorizontal,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SearchFilterBarProps {
@@ -62,8 +67,18 @@ const Calendar: React.FC<{
   });
 
   const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
@@ -77,33 +92,41 @@ const Calendar: React.FC<{
     const startingDayOfWeek = firstDay.getDay();
 
     const days = [];
-    
+
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDayOfWeek; i++) {
       days.push(null);
     }
-    
+
     // Add all days of the month
     for (let i = 1; i <= daysInMonth; i++) {
       days.push(i);
     }
-    
+
     return days;
   };
 
   const formatDateForComparison = (date: Date) => {
-    return date.toISOString().split('T')[0];
+    return date.toISOString().split("T")[0];
   };
 
   const isDateSelected = (day: number | null) => {
     if (!selectedDate || !day) return false;
-    const dateToCheck = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+    const dateToCheck = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      day
+    );
     return formatDateForComparison(dateToCheck) === selectedDate;
   };
 
   const isDateDisabled = (day: number | null) => {
     if (!day) return true;
-    const dateToCheck = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+    const dateToCheck = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      day
+    );
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return dateToCheck < today;
@@ -111,14 +134,18 @@ const Calendar: React.FC<{
 
   const handleDateClick = (day: number | null) => {
     if (!day || isDateDisabled(day)) return;
-    const selectedDateObj = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+    const selectedDateObj = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      day
+    );
     onDateSelect(formatDateForComparison(selectedDateObj));
   };
 
-  const navigateMonth = (direction: 'prev' | 'next') => {
-    setCurrentMonth(prev => {
+  const navigateMonth = (direction: "prev" | "next") => {
+    setCurrentMonth((prev) => {
       const newMonth = new Date(prev);
-      if (direction === 'prev') {
+      if (direction === "prev") {
         newMonth.setMonth(prev.getMonth() - 1);
       } else {
         newMonth.setMonth(prev.getMonth() + 1);
@@ -140,7 +167,7 @@ const Calendar: React.FC<{
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigateMonth('prev')}
+            onClick={() => navigateMonth("prev")}
             className="h-8 w-8 p-0"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -148,7 +175,7 @@ const Calendar: React.FC<{
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigateMonth('next')}
+            onClick={() => navigateMonth("next")}
             className="h-8 w-8 p-0"
           >
             <ChevronRight className="h-4 w-4" />
@@ -159,7 +186,10 @@ const Calendar: React.FC<{
       {/* Days of Week Header */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {daysOfWeek.map((day, index) => (
-          <div key={index} className="h-8 flex items-center justify-center text-sm font-medium text-muted-foreground">
+          <div
+            key={index}
+            className="h-8 flex items-center justify-center text-sm font-medium text-muted-foreground"
+          >
             {day}
           </div>
         ))}
@@ -176,7 +206,9 @@ const Calendar: React.FC<{
               "h-8 w-8 text-sm rounded-lg transition-colors",
               day ? "hover:bg-accent" : "",
               isDateSelected(day) ? "bg-primary text-primary-foreground" : "",
-              isDateDisabled(day) ? "text-muted-foreground/50 cursor-not-allowed" : "cursor-pointer",
+              isDateDisabled(day)
+                ? "text-muted-foreground/50 cursor-not-allowed"
+                : "cursor-pointer",
               !day ? "invisible" : ""
             )}
           >
@@ -201,32 +233,28 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [reservationTypeOpen, setReservationTypeOpen] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);
-  const cuisineOptions = [
-    "Indonesian",
-    "Western", 
-    "French",
-    "Italian",
-    "Chinese",
-    "Japanese",
-    "Mediterranean",
-    "American",
-    "Thai",
-    "Indian",
-    "Mexican",
-    "Dutch",
-    "European",
-  ];
+  const cuisineOptions = ["Indonesian", "Western"];
 
-  const reservationTypeOptions = ["Dine in", "Takeout", "Delivery"];
-  const locationOptions = ["Jakarta", "Bali"]
+  const reservationTypeOptions = ["Dine in" ];
+  const locationOptions = ["Jakarta", "Bali"];
   const partySizeOptions = ["1", "2", "3", "4", "5", "6", "7", "8+"];
-  const timeOptions = ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"];
+  const timeOptions = [
+    "17:00",
+    "17:30",
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
+    "20:30",
+    "21:00",
+  ];
 
   const toggleCuisine = (cuisine: string) => {
     const newCuisines = filters.cuisines.includes(cuisine)
-      ? filters.cuisines.filter(c => c !== cuisine)
+      ? filters.cuisines.filter((c) => c !== cuisine)
       : [...filters.cuisines, cuisine];
-    
+
     onFiltersChange({
       ...filters,
       cuisines: newCuisines,
@@ -234,7 +262,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   };
 
   const handleReservationChange = (key: string, value: string) => {
-    console.log('Filter change:', key, value); // Debug log
+    console.log("Filter change:", key, value); // Debug log
     if (onReservationChange) {
       onReservationChange({ [key]: value });
     }
@@ -249,10 +277,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
 
     if (date.toDateString() === today.toDateString()) return "Today";
     if (date.toDateString() === tomorrow.toDateString()) return "Tomorrow";
-    
-    return date.toLocaleDateString("en-US", { 
-      month: "short", 
-      day: "numeric" 
+
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -260,14 +288,14 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
     if (!timeString) return "";
     if (timeString === "now") return "Now";
     if (timeString === "asap") return "ASAP";
-    
+
     const [hours, minutes] = timeString.split(":");
     const date = new Date();
     date.setHours(parseInt(hours), parseInt(minutes));
-    return date.toLocaleTimeString("en-US", { 
-      hour: "numeric", 
-      minute: "2-digit", 
-      hour12: false 
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: false,
     });
   };
 
@@ -275,7 +303,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
     <div className="bg-background border-y border-neutral-800 px-6 py-4">
       <div className="flex items-center space-x-3">
         {/* Reservation Type */}
-        <DropdownMenu open={reservationTypeOpen} onOpenChange={setReservationTypeOpen}>
+        <DropdownMenu
+          open={reservationTypeOpen}
+          onOpenChange={setReservationTypeOpen}
+        >
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-full px-4 py-2 h-auto">
               {reservationType}
@@ -305,7 +336,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         {/* Location */}
         <DropdownMenu open={locationOpen} onOpenChange={setLocationOpen}>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="rounded-full px-4 py-2 h-auto flex items-center space-x-2">
+            <Button
+              variant="outline"
+              className="rounded-full px-4 py-2 h-auto flex items-center space-x-2"
+            >
               <MapPin className="h-4 w-4" />
               <span>{location || "Select location"}</span>
             </Button>
@@ -334,20 +368,29 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         {/* Date, Time & Guests Combined */}
         <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="rounded-full flex gap-2 px-4 py-2 h-auto">
-              <span className="text-sm border-r border-neutral-800 pr-2">{formatDate(date)}</span>
-              <span className="text-sm border-r border-neutral-800 pr-2">{formatTime(time) || "Select time"}</span>
-              <span className="text-sm">{partySize} guest{parseInt(partySize) > 1 ? 's' : ''}</span>
+            <Button
+              variant="outline"
+              className="rounded-full flex gap-2 px-4 py-2 h-auto"
+            >
+              <span className="text-sm border-r border-neutral-800 pr-2">
+                {formatDate(date)}
+              </span>
+              <span className="text-sm border-r border-neutral-800 pr-2">
+                {formatTime(time) || "Select time"}
+              </span>
+              <span className="text-sm">
+                {partySize} guest{parseInt(partySize) > 1 ? "s" : ""}
+              </span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-auto">
             <DropdownMenuSeparator />
-            <Calendar 
-              selectedDate={date} 
+            <Calendar
+              selectedDate={date}
               onDateSelect={(newDate) => {
                 handleReservationChange("date", newDate);
                 setDropdownOpen(false);
-              }} 
+              }}
             />
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Party Size</DropdownMenuLabel>
@@ -393,7 +436,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         {/* More Filters Dialog */}
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="outline" className="rounded-full border-neutral-800 px-4 py-2 h-auto flex items-center space-x-2">
+            <Button
+              variant="outline"
+              className="rounded-full border-neutral-800 px-4 py-2 h-auto flex items-center space-x-2"
+            >
               <SlidersHorizontal className="h-4 w-4" />
               <span>More filters</span>
             </Button>
@@ -407,7 +453,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                 <h4 className="font-medium text-sm mb-3">Cuisines</h4>
                 <div className="space-y-2">
                   {cuisineOptions.map((cuisine) => (
-                    <label key={cuisine} className="flex items-center space-x-2 cursor-pointer">
+                    <label
+                      key={cuisine}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
                       <input
                         type="checkbox"
                         checked={filters.cuisines.includes(cuisine)}
@@ -419,16 +468,20 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                   ))}
                 </div>
               </div>
-              
+
               <div className="border-t pt-4">
                 <h4 className="font-medium text-sm mb-3">Price Range</h4>
                 <div className="grid grid-cols-4 gap-2">
                   {["€", "€€", "€€€", "€€€€"].map((price) => (
                     <Button
                       key={price}
-                      variant={filters.priceRange === price ? "default" : "outline"}
+                      variant={
+                        filters.priceRange === price ? "default" : "outline"
+                      }
                       size="sm"
-                      onClick={() => onFiltersChange({ ...filters, priceRange: price })}
+                      onClick={() =>
+                        onFiltersChange({ ...filters, priceRange: price })
+                      }
                       className="h-8"
                     >
                       {price}
@@ -436,16 +489,18 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                   ))}
                 </div>
               </div>
-              
+
               <div className="border-t pt-4">
                 <h4 className="font-medium text-sm mb-3">Restaurant Type</h4>
                 <div className="space-y-1">
-                  {["All", "Fine Dining", "Casual", "Trendy"].map((list) => (
+                  {["All", "Fine Dining", "Casual"].map((list) => (
                     <Button
                       key={list}
                       variant={filters.lists === list ? "default" : "ghost"}
                       size="sm"
-                      onClick={() => onFiltersChange({ ...filters, lists: list })}
+                      onClick={() =>
+                        onFiltersChange({ ...filters, lists: list })
+                      }
                       className="w-full justify-start h-8"
                     >
                       {list}
@@ -453,7 +508,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                   ))}
                 </div>
               </div>
-              
+
               <div className="border-t pt-4">
                 <h4 className="font-medium text-sm mb-3">Minimum Rating</h4>
                 <div className="space-y-1">
@@ -462,7 +517,9 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                       key={rating}
                       variant={filters.rating === rating ? "default" : "ghost"}
                       size="sm"
-                      onClick={() => onFiltersChange({ ...filters, rating: rating })}
+                      onClick={() =>
+                        onFiltersChange({ ...filters, rating: rating })
+                      }
                       className="w-full justify-start h-8"
                     >
                       {rating === "All" ? "All ratings" : `${rating}+ stars`}
@@ -478,4 +535,4 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   );
 };
 
-export default SearchFilterBar; 
+export default SearchFilterBar;

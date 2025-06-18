@@ -2,7 +2,6 @@
 
 import React, { Suspense, useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import SearchHeader from "@/components/search-header";
 import SearchFilterBar from "@/components/search-filter-bar";
 import RestaurantList, { Restaurant } from "@/components/restaurant-list";
 import RestaurantMap from "@/components/restaurant-map";
@@ -26,6 +25,7 @@ const mockRestaurants = [
     availability: "Sorry, we don't currently have any tables available for 2.",
     distance: "0.5 km",
     url: "https://locavorenxt.com/family/herbivore",
+    reservation_url: "https://herbivore.revasi.net/reservations/availability",
   },
   {
     id: 2,
@@ -43,6 +43,7 @@ const mockRestaurants = [
     availability: "Sorry, we don't currently have any tables available for 2.",
     distance: "0.8 km",
     url: "https://locavorenxt.com/family/nusantara",
+    reservation_url: "https://nusantara.revasi.net/reservations/availability",
   },
   {
     id: 3,
@@ -60,6 +61,7 @@ const mockRestaurants = [
     availability: "Available now",
     distance: "1.2 km",
     url: "https://locavorenxt.com/family/locavorenxt",
+    reservation_url: "https://locavorenxt.revasi.net/reservations/availability",
   },
   {
     id: 4,
@@ -77,6 +79,7 @@ const mockRestaurants = [
     availability: "Available at 8:00 PM",
     distance: "0.3 km",
     url: "https://locavorenxt.com/family/peggysbrassknuckles",
+    reservation_url: "https://peggysbrassknuckles.revasi.net/reservations/availability",
   },
 ];
 
@@ -234,7 +237,9 @@ function SearchContent() {
   });
 
   // Create final restaurant list with pinned restaurant at top
-  const finalRestaurantList = pinnedRestaurant
+  // Only pin the restaurant if it passes the current filters
+  const finalRestaurantList = pinnedRestaurant && 
+    filteredRestaurants.some((r) => r.id === pinnedRestaurant.id)
     ? [
         pinnedRestaurant,
         ...filteredRestaurants.filter((r) => r.id !== pinnedRestaurant.id),

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Star, ExternalLink } from "lucide-react";
+import { MapPin, Star, ExternalLink, Navigation } from "lucide-react";
 import { Restaurant } from "./restaurant-list";
 
 // Dynamic imports for Leaflet to avoid SSR issues
@@ -29,6 +29,7 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants, onPinRestaur
   const mapRef = useRef<any>(null);
   const [leafletLoaded, setLeafletLoaded] = useState(false);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const [locatingUser, setLocatingUser] = useState(false);
 
   useEffect(() => {
     // Dynamic import of Leaflet components
@@ -60,6 +61,16 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants, onPinRestaur
 
     loadLeaflet();
   }, []);
+
+  // Update map center when restaurants change
+  useEffect(() => {
+    if (mapRef.current && restaurants.length > 0) {
+      const newCenterLat = restaurants.reduce((sum, restaurant) => sum + restaurant.coordinates[0], 0) / restaurants.length;
+      const newCenterLng = restaurants.reduce((sum, restaurant) => sum + restaurant.coordinates[1], 0) / restaurants.length;
+      
+      mapRef.current.setView([newCenterLat, newCenterLng], 10);
+    }
+  }, [restaurants]);
 
   // Calculate center point from restaurants
   const centerLat = restaurants.length > 0 
@@ -109,6 +120,34 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants, onPinRestaur
       iconAnchor: [24, 48],
       popupAnchor: [0, -48],
     });
+  };
+
+  const handleGetCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by this browser.");
+      return;
+    }
+
+    setLocatingUser(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        if (mapRef.current) {
+          mapRef.current.setView([latitude, longitude], 15);
+        }
+        setLocatingUser(false);
+      },
+      (error) => {
+        console.error("Error getting location:", error);
+        alert("Unable to retrieve your location. Please check your browser settings.");
+        setLocatingUser(false);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 60000,
+      }
+    );
   };
 
   if (!leafletLoaded) {
@@ -188,23 +227,23 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants, onPinRestaur
       </div>
 
       {/* Selected Restaurant Info */}
-      {selectedRestaurant && (
+      {false && selectedRestaurant && (
         <Card className="absolute top-6 left-6 right-6 z-[1000] shadow-xl border-neutral-700 bg-background/95 backdrop-blur">
           <CardContent className="p-4">
             <div className="flex items-start justify-between">
               <div className="space-y-2 min-w-0 flex-1">
-                <h3 className="font-semibold text-base">{selectedRestaurant.name}</h3>
+                <h3 className="font-semibold text-base">{selectedRestaurant?.name}</h3>
                 <div className="flex items-center space-x-2 text-sm">
                   <div className="flex items-center space-x-1">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="font-medium">{selectedRestaurant.rating}</span>
+                    <span className="font-medium">{selectedRestaurant?.rating}</span>
                   </div>
                   <span>•</span>
-                  <span>{selectedRestaurant.cuisine}</span>
+                  <span>{selectedRestaurant?.cuisine}</span>
                   <span>•</span>
-                  <span>{selectedRestaurant.priceRange}</span>
+                  <span>{selectedRestaurant?.priceRange}</span>
                 </div>
-                <p className="text-sm text-muted-foreground truncate">{selectedRestaurant.address}</p>
+                <p className="text-sm text-muted-foreground truncate">{selectedRestaurant?.address}</p>
               </div>
               <Button
                 size="sm"
@@ -218,6 +257,16 @@ const RestaurantMap: React.FC<RestaurantMapProps> = ({ restaurants, onPinRestaur
           </CardContent>
         </Card>
       )}
+
+      {/* Current Location Button */}
+      <Button
+        onClick={handleGetCurrentLocation}
+        disabled={locatingUser}
+        className="absolute top-6 right-6 z-[1000] w-12 h-12 rounded-full p-0 shadow-xl"
+        variant="secondary"
+      >
+        <Navigation className={`h-5 w-5 ${locatingUser ? 'animate-spin' : ''}`} />
+      </Button>
 
       {/* Map Legend */}
       <Card className="absolute bottom-8 right-4 z-[1000] shadow-xl border-neutral-700 bg-background/95 backdrop-blur">
