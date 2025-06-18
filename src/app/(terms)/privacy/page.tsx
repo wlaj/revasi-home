@@ -2,10 +2,61 @@
 
 import ContentSection from "@/components/content-section";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { Metadata } from "next";
 import React, { useRef } from "react";
+
+// Note: This metadata will be inherited from a layout file we'll create
+// export const metadata: Metadata = {
+//   title: "Privacy Policy - Data Protection & Privacy Rights",
+//   description: "Revasi's comprehensive privacy policy explaining how we collect, use, and protect your personal information. Learn about your data rights under GDPR and our commitment to data security.",
+// };
 
 const content = (
   <div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Revasi Privacy Policy",
+          "description": "Privacy policy and data protection information for Revasi restaurant management system",
+          "url": "https://www.revasi.net/privacy",
+          "dateModified": "2025-04-20",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.revasi.net"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Privacy Policy",
+                "item": "https://www.revasi.net/privacy"
+              }
+            ]
+          },
+          "mainEntity": {
+            "@type": "Article",
+            "headline": "Revasi Privacy Policy",
+            "datePublished": "2025-04-20",
+            "dateModified": "2025-04-20",
+            "author": {
+              "@type": "Organization",
+              "name": "Digics"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Revasi"
+            }
+          }
+        })
+      }}
+    />
     <p>Effective Date: April 20</p>
     <p>2025 Last Updated: April 20, 2025</p>
     <p>
