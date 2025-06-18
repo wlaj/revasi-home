@@ -198,7 +198,12 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   time,
   onReservationChange,
 }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [reservationTypeOpen, setReservationTypeOpen] = useState(false);
+  const [locationOpen, setLocationOpen] = useState(false);
   const cuisineOptions = [
+    "Indonesian",
+    "Western", 
     "French",
     "Italian",
     "Chinese",
@@ -213,7 +218,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   ];
 
   const reservationTypeOptions = ["Dine in", "Takeout", "Delivery"];
-  const locationOptions = ["Singapore", "Amsterdam", "Jakarta", "Ubud", "Tokyo", "New York"];
+  const locationOptions = ["Jakarta", "Bali"]
   const partySizeOptions = ["1", "2", "3", "4", "5", "6", "7", "8+"];
   const timeOptions = ["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00"];
 
@@ -229,6 +234,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
   };
 
   const handleReservationChange = (key: string, value: string) => {
+    console.log('Filter change:', key, value); // Debug log
     if (onReservationChange) {
       onReservationChange({ [key]: value });
     }
@@ -269,7 +275,7 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
     <div className="bg-background border-y border-neutral-800 px-6 py-4">
       <div className="flex items-center space-x-3">
         {/* Reservation Type */}
-        <DropdownMenu>
+        <DropdownMenu open={reservationTypeOpen} onOpenChange={setReservationTypeOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-full px-4 py-2 h-auto">
               {reservationType}
@@ -281,7 +287,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
             {reservationTypeOptions.map((type) => (
               <DropdownMenuItem
                 key={type}
-                onClick={() => handleReservationChange("reservationType", type)}
+                onClick={() => {
+                  handleReservationChange("reservationType", type);
+                  setReservationTypeOpen(false);
+                }}
                 className={cn(
                   "cursor-pointer",
                   reservationType === type && "bg-accent text-accent-foreground"
@@ -294,11 +303,11 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         </DropdownMenu>
 
         {/* Location */}
-        <DropdownMenu>
+        <DropdownMenu open={locationOpen} onOpenChange={setLocationOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-full px-4 py-2 h-auto flex items-center space-x-2">
               <MapPin className="h-4 w-4" />
-              <span>{location}</span>
+              <span>{location || "Select location"}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
@@ -307,7 +316,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
             {locationOptions.map((loc) => (
               <DropdownMenuItem
                 key={loc}
-                onClick={() => handleReservationChange("location", loc)}
+                onClick={() => {
+                  handleReservationChange("location", loc);
+                  setLocationOpen(false);
+                }}
                 className={cn(
                   "cursor-pointer",
                   location === loc && "bg-accent text-accent-foreground"
@@ -320,17 +332,23 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
         </DropdownMenu>
 
         {/* Date, Time & Guests Combined */}
-        <DropdownMenu>
+        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="rounded-full flex gap-2 px-4 py-2 h-auto">
               <span className="text-sm border-r border-neutral-800 pr-2">{formatDate(date)}</span>
-              <span className="text-sm border-r border-neutral-800 pr-2">{formatTime(time)}</span>
+              <span className="text-sm border-r border-neutral-800 pr-2">{formatTime(time) || "Select time"}</span>
               <span className="text-sm">{partySize} guest{parseInt(partySize) > 1 ? 's' : ''}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-auto">
             <DropdownMenuSeparator />
-            <Calendar selectedDate={date} onDateSelect={(newDate) => handleReservationChange("date", newDate)} />
+            <Calendar 
+              selectedDate={date} 
+              onDateSelect={(newDate) => {
+                handleReservationChange("date", newDate);
+                setDropdownOpen(false);
+              }} 
+            />
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Party Size</DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -340,7 +358,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                   key={size}
                   variant={partySize === size ? "default" : "outline"}
                   size="sm"
-                  onClick={() => handleReservationChange("partySize", size)}
+                  onClick={() => {
+                    handleReservationChange("partySize", size);
+                    setDropdownOpen(false);
+                  }}
                   className="h-8"
                 >
                   {size}
@@ -356,7 +377,10 @@ const SearchFilterBar: React.FC<SearchFilterBarProps> = ({
                   key={timeOption}
                   variant={time === timeOption ? "default" : "outline"}
                   size="sm"
-                  onClick={() => handleReservationChange("time", timeOption)}
+                  onClick={() => {
+                    handleReservationChange("time", timeOption);
+                    setDropdownOpen(false);
+                  }}
                   className="h-8 text-xs"
                 >
                   {timeOption}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import SearchHeader from "@/components/search-header";
 import SearchFilterBar from "@/components/search-filter-bar";
 import RestaurantList, { Restaurant } from "@/components/restaurant-list";
@@ -17,7 +17,7 @@ const mockRestaurants = [
     reviews: 1735,
     cuisine: "Indonesian",
     priceRange: "€€",
-    location: "Ubud",
+    location: "Bali",
     address:
       "Jl. Dewisita No.10, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
     coordinates: [-8.507605, 115.26469] as [number, number],
@@ -34,7 +34,7 @@ const mockRestaurants = [
     reviews: 647,
     cuisine: "Indonesian",
     priceRange: "€€",
-    location: "Ubud",
+    location: "Bali",
     address:
       "Jl. Dewisita No.09C, Ubud, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
     coordinates: [-8.50767, 115.26485] as [number, number],
@@ -51,7 +51,7 @@ const mockRestaurants = [
     reviews: 328,
     cuisine: "Indonesian",
     priceRange: "€€€",
-    location: "Ubud",
+    location: "Bali",
     address:
       "Jl. A.A. Gede Rai Gang Pura Panti Bija, Lodtunduh, Kecamatan Ubud, Kabupaten Gianyar, Bali 80571, Indonesia",
     coordinates: [-8.5391, 115.2668] as [number, number],
@@ -68,7 +68,7 @@ const mockRestaurants = [
     reviews: 119,
     cuisine: "Western",
     priceRange: "€€",
-    location: "South Jakarta City",
+    location: "Jakarta",
     address:
       "Shophaus Mahakam Jl. Mahakam No.17 2nd Floor, Kramat Pela, Kec. Kby. Baru, Jakarta, Daerah Khusus Ibukota Jakarta 12310, Indonesia",
     coordinates: [-6.24425, 106.7979] as [number, number],
@@ -82,6 +82,8 @@ const mockRestaurants = [
 
 function SearchContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const [reservationParams, setReservationParams] = useState({
     reservationType: searchParams.get("reservationType") || "Dine in",
     location: searchParams.get("location") || "",
@@ -97,16 +99,49 @@ function SearchContent() {
     priceRange: string;
     rating: string;
   }>({
-    seating: "All Day",
-    cuisines: [],
-    lists: "All",
-    priceRange: "All",
-    rating: "All",
+    seating: searchParams.get("seating") || "All Day",
+    cuisines: searchParams.get("cuisines")?.split(',').filter(Boolean) || [],
+    lists: searchParams.get("lists") || "All",
+    priceRange: searchParams.get("priceRange") || "All",
+    rating: searchParams.get("rating") || "All",
   });
+
+  const handleFiltersChange = (newFilters: typeof filters) => {
+    console.log('Updating filters:', newFilters); // Debug log
+    setFilters(newFilters);
+    
+    // Update URL with filter parameters
+    const filterParams: Record<string, string> = {};
+    if (newFilters.seating !== "All Day") filterParams.seating = newFilters.seating;
+    if (newFilters.cuisines.length > 0) filterParams.cuisines = newFilters.cuisines.join(',');
+    if (newFilters.lists !== "All") filterParams.lists = newFilters.lists;
+    if (newFilters.priceRange !== "All") filterParams.priceRange = newFilters.priceRange;
+    if (newFilters.rating !== "All") filterParams.rating = newFilters.rating;
+    
+    updateURL({ ...reservationParams, ...filterParams });
+  };
 
   const [pinnedRestaurant, setPinnedRestaurant] = useState<Restaurant | null>(
     null
   );
+
+  const updateURL = (newParams: Record<string, string>) => {
+    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    
+    // Update the URL parameters
+    Object.entries(newParams).forEach(([key, value]) => {
+      if (value && value.trim() !== '') {
+        current.set(key, value);
+      } else {
+        current.delete(key);
+      }
+    });
+
+    // Push the new URL without causing a page refresh
+    const search = current.toString();
+    const query = search ? `?${search}` : "";
+    router.push(`${pathname}${query}`, { scroll: false });
+  };
 
   const handleReservationChange = (params: {
     reservationType?: string;
@@ -115,11 +150,29 @@ function SearchContent() {
     date?: string;
     time?: string;
   }) => {
-    setReservationParams((prev) => ({ ...prev, ...params }));
+    console.log('Updating reservation params:', params); // Debug log
+    
+    // Update local state
+    setReservationParams((prev) => {
+      const newParams = { ...prev, ...params };
+      console.log('New reservation params:', newParams); // Debug log
+      
+      // Update URL with the new parameters
+      updateURL(newParams);
+      
+      return newParams;
+    });
   };
 
   // Filter restaurants based on active filters
   const filteredRestaurants = mockRestaurants.filter((restaurant) => {
+    // Filter by location
+    if (reservationParams.location && reservationParams.location.trim() !== "") {
+      if (restaurant.location.toLowerCase() !== reservationParams.location.toLowerCase()) {
+        return false;
+      }
+    }
+
     // Filter by cuisines
     if (filters.cuisines.length > 0) {
       const restaurantCuisine = restaurant.cuisine.toLowerCase();
@@ -205,7 +258,7 @@ function SearchContent() {
       {/* Filter Bar */}
       <SearchFilterBar
         filters={filters}
-        onFiltersChange={setFilters}
+        onFiltersChange={handleFiltersChange}
         reservationType={reservationParams.reservationType}
         location={reservationParams.location}
         partySize={reservationParams.partySize}

@@ -13,33 +13,27 @@ export default function FrequentAskedQuestions() {
   const faqItems = [
     {
       id: "item-1",
-      question: "How does it work?",
+      question: "What is this platform?",
       answer:
-        "We use a combination of AI and human expertise to find the best restaurant for you. We also use a combination of AI and human expertise to find the best restaurant for you. We also use a combination of AI and human expertise to find the best restaurant for you.",
+        "This is a reservation system that helps you discover and book tables at top restaurants.",
     },
     {
       id: "item-2",
-      question: "What payment methods do you accept?",
+      question: "How do I make a reservation?",
       answer:
-        "We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, and Google Pay. For enterprise customers, we also offer invoicing options.",
+        "Search by date, time, party size, and location. Then choose a restaurant and available time slot to book.",
     },
     {
       id: "item-3",
-      question: "Can I change or cancel my order?",
+      question: "Why do some reservations require a credit card?",
       answer:
-        "You can modify or cancel your order within 1 hour of placing it. After this window, please contact our customer support team who will assist you with any changes.",
+        "Restaurants may ask for a credit card to hold your reservation or charge a deposit, especially for popular time slots or prix-fixe events."
     },
     {
-      id: "item-4",
-      question: "Do you ship internationally?",
+      id: "item-6",
+      question: "What areas do you cover?",
       answer:
-        "Yes, we ship to over 50 countries worldwide. International shipping typically takes 7-14 business days. Additional customs fees may apply depending on your country's import regulations.",
-    },
-    {
-      id: "item-5",
-      question: "What is your return policy?",
-      answer:
-        "We offer a 30-day return policy for most items. Products must be in original condition with tags attached. Some specialty items may have different return terms, which will be noted on the product page.",
+        "We currently cover Jakarta and Bali in Indonesia, with plans to expand to more regions. Check our coverage map to see if your area is included.",
     },
   ];
 
@@ -80,7 +74,10 @@ export default function FrequentAskedQuestions() {
 
           <p className="text-muted-foreground mt-6 px-8">
             Can&apos;t find what you&apos;re looking for? Contact our{" "}
-            <Link href="#" className="text-primary font-medium hover:underline">
+            <Link
+              href="mailto:lucas@digics.net"
+              className="text-primary font-medium hover:underline"
+            >
               customer support team
             </Link>
           </p>

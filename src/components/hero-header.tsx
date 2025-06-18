@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExternalLinkIcon, FlowerIcon, Menu, X } from "lucide-react";
+import { ExternalLinkIcon, FlowerIcon, MailIcon, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -13,10 +13,10 @@ interface HeroHeaderProps {
   variant?: "default" | "search";
 }
 
-export const HeroHeader = ({ 
-  fullWidth = false, 
+export const HeroHeader = ({
+  fullWidth = false,
   minHeight = "auto",
-  variant = "default" 
+  variant = "default",
 }: HeroHeaderProps) => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -43,9 +43,11 @@ export const HeroHeader = ({
           className={cn(
             "mx-auto mt-2 transition-all duration-300 px-4",
             fullWidth ? "max-w-full" : "max-w-6xl",
-            isScrolled && !fullWidth &&
+            isScrolled &&
+              !fullWidth &&
               "bg-background/40 max-w-4xl rounded-2xl backdrop-blur-lg lg:px-5",
-            isScrolled && fullWidth &&
+            isScrolled &&
+              fullWidth &&
               "bg-background/40 backdrop-blur-lg lg:px-5"
           )}
         >
@@ -82,25 +84,37 @@ export const HeroHeader = ({
                 )}
                 <Button
                   asChild
-                  size="sm"
-                  variant="secondary"
+                  variant="ghost"
                   className={cn(isScrolled && "lg:hidden")}
                 >
-                  <Link href="mailto:lucas@digics.net">
-                    <span>Contact us</span>
+                  <Link
+                    className="flex items-center gap-2"
+                    href="mailto:lucas@digics.net"
+                  >
+                    <MailIcon className="size-4" />
+                    Contact us
                   </Link>
                 </Button>
                 <Button
                   asChild
-                  size="sm"
-                  variant="secondary"
+                  variant="ghost"
                   type="submit"
                   className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
                 >
                   <Link href="mailto:lucas@digics.net">
-                    <span>Contact us</span>
+                    <MailIcon className="size-4" />
+                    Contact us
                   </Link>
                 </Button>
+                {pathname === "/join" && (
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
+                  >
+                    <Link href="https://cal.com/digics/demo">Book demo</Link>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
