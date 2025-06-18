@@ -3,11 +3,70 @@ import FeaturedSection from "@/components/featured-section";
 import FrequentAskedQuestions from "@/components/frequent-asked-questions";
 import HeroSimpleSection from "@/components/hero-simple-section";
 import { HeroHeader } from "@/components/hero-header";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Revasi - Premium Restaurant Reservation Management System",
+  description: "Transform your fine dining restaurant with Revasi's comprehensive reservation management platform. Streamline bookings, manage tables, and enhance guest experiences. Trusted by leading restaurants in Bali including Locavore NXT.",
+  openGraph: {
+    title: "Revasi - Premium Restaurant Reservation Management System",
+    description: "Transform your fine dining restaurant with Revasi's comprehensive reservation management platform. Trusted by leading restaurants in Bali.",
+    url: "https://www.revasi.net",
+    images: [
+      {
+        url: "/og-home.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Revasi Restaurant Management Dashboard",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://www.revasi.net",
+  },
+};
 
 const Page = () => {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Revasi - Premium Restaurant Reservation Management System",
+            "description": "Transform your fine dining restaurant with Revasi's comprehensive reservation management platform.",
+            "url": "https://www.revasi.net",
+            "mainEntity": {
+              "@type": "SoftwareApplication",
+              "name": "Revasi",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web-based",
+              "description": "Restaurant reservation management system for fine dining establishments",
+              "featureList": [
+                "Table Reservation Management",
+                "Customer Database",
+                "Real-time Availability",
+                "Analytics Dashboard",
+                "Multi-location Support"
+              ]
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.revasi.net"
+                }
+              ]
+            }
+          })
+        }}
+      />
       <HeroHeader />
       <main className="relative overflow-hidden">
         <div
