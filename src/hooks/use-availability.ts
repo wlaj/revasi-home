@@ -16,6 +16,31 @@ export interface RestaurantAvailability {
   isDinnerAvailable: boolean
 }
 
+// Define interfaces for type safety
+interface Table {
+  covers_min: number
+  covers_max: number
+  table_id?: string
+  name?: string
+}
+
+interface AvailabilitySettings {
+  available_lunch_days?: number[]
+  available_dinner_days?: number[]
+  lunch_start_time?: string
+  lunch_end_time?: string
+  dinner_start_time?: string
+  dinner_end_time?: string
+  time_slot_interval?: number
+  tables?: Table[]
+}
+
+interface Reservation {
+  reservation_time: string
+  covers: number
+  reservation_status: string
+}
+
 // Generate time slots based on availability settings
 const generateTimeSlots = (
   startTime: string,
@@ -26,7 +51,7 @@ const generateTimeSlots = (
   const start = new Date(`2000-01-01T${startTime}`)
   const end = new Date(`2000-01-01T${endTime}`)
   
-  let current = new Date(start)
+  const current = new Date(start)
   while (current < end) {
     slots.push(current.toTimeString().slice(0, 5))
     current.setMinutes(current.getMinutes() + interval)
@@ -36,7 +61,7 @@ const generateTimeSlots = (
 }
 
 // Check if a table can accommodate the party size
-const canTableAccommodateParty = (table: any, partySize: number): boolean => {
+const canTableAccommodateParty = (table: Table, partySize: number): boolean => {
   return table.covers_min <= partySize && table.covers_max >= partySize
 }
 
@@ -80,7 +105,7 @@ export const useAvailability = (
           throw new Error('No availability settings found for restaurant')
         }
 
-        const settings = restaurant.availability_settings
+        const settings: AvailabilitySettings = restaurant.availability_settings
         const dayOfWeek = getDayOfWeek(date)
 
         // Check if restaurant is open on this day
@@ -112,7 +137,7 @@ export const useAvailability = (
         }
 
         // Find tables that can accommodate the party size
-        const suitableTables = settings.tables?.filter((table: any) => 
+        const suitableTables = settings.tables?.filter((table: Table) => 
           canTableAccommodateParty(table, partySize)
         ) || []
 
@@ -129,7 +154,7 @@ export const useAvailability = (
           for (const time of lunchSlots) {
             // Count how many tables are booked at this time
             const bookedTablesAtTime = reservations?.filter(
-              (res: any) => res.reservation_time === `${time}:00`
+              (res: Reservation) => res.reservation_time === `${time}:00`
             ).length || 0
 
             const availableTables = Math.max(0, suitableTables.length - bookedTablesAtTime)
@@ -153,7 +178,7 @@ export const useAvailability = (
           for (const time of dinnerSlots) {
             // Count how many tables are booked at this time
             const bookedTablesAtTime = reservations?.filter(
-              (res: any) => res.reservation_time === `${time}:00`
+              (res: Reservation) => res.reservation_time === `${time}:00`
             ).length || 0
 
             const availableTables = Math.max(0, suitableTables.length - bookedTablesAtTime)
